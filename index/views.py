@@ -56,7 +56,7 @@ class Investigador(View):
 def ObtenerContexto(params):
     postgraduate_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=2))
     publication_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=3))[:7]
-    investigator_list = investigator_model.Investigator.objects.filter(activo = True).order_by('nombres')
+    investigator_list = investigator_model.Investigator.objects.filter(active = True).order_by('names')
     about = AboutModel.objects.last()
     investigationLines_list = investigationLines_model.InvestigationLines.objects.all().order_by('titulo')
 
@@ -224,7 +224,7 @@ class sendMessage(TemplateView):
                 nombre = request.POST.get('txtNombre')
                 correo = request.POST.get('txtCorreo')
                 mensaje = MIMEText(request.POST.get('txtMensaje'))
-                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(activo = True).order_by('nombres')]
+                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(activo = True).order_by('names')]
                 conn = smtplib.SMTP( "smtp.gmail.com:587")
                 conn.ehlo()
                 conn.starttls()

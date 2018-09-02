@@ -38,7 +38,7 @@
               <select data-placeholder="Elija un tutor..." class="col-xs-12 chosen-select">
                   <option></option>
                   {% for investigator in investigator_list %}
-                    <option value='{{ investigator.id }}'>{{ investigator.nombres }}</option>
+                    <option value='{{ investigator.id }}'>{{ investigator.names }}</option>
                   {% endfor %}
               </select>
           </div>
@@ -129,7 +129,7 @@
                 {{ posgrade.titulo }}
               </td>
               <td>
-                {{ posgrade.tutor.nombres }} {{ posgrade.tutor.apellidos }}
+                {{ posgrade.tutor.names }} {{ posgrade.tutor.surnames }}
               </td>
               <td>
                 <div class="hidden-sm hidden-xs action-buttons">

@@ -4,7 +4,7 @@ from testimony import models as testimony_model
 # Create your views here.
 def index_view(request, *args, **kwargs):
     idInvestigator = kwargs['investigator']
-    investigator_list = investigator_model.Investigator.objects.all().order_by('nombres')
+    investigator_list = investigator_model.Investigator.objects.all().order_by('names')
     investigator_info = investigator_model.Investigator.objects.get(id=idInvestigator)
     testimony_list = testimony_model.Testimony.objects.all().order_by('-id')[:20]
     template_testimony_list1 = testimony_list[:len(testimony_list)/2]
