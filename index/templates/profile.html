@@ -1,0 +1,171 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li class="active">Perfil </li>
+    </ol>
+  </div>
+</div>
+
+<div class="main-container padding-bottom-clear">
+  <div class="container">
+    <div class="row">
+      <div class="main col-md-12">
+        <h3 class="title"><strong>Presentación</strong></h3>
+        <div class="separator-2"></div>
+        <div class="row">
+          <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+              <div class="overlay-container overlay-visible">
+                {% if investigator_info.fotoPerfil == 'False' %}
+                  <img class="center-block" src="/media/profiles/avatar5.png" alt="">
+                {% else %}
+                  <img class="center-block" src="{{ MEDIA_URL }}{{ investigator_info.fotoPerfil }}" alt="">
+                {% endif %}
+
+                <div class="overlay-bottom">
+                  <p class="small margin-clear">{{ investigator_info.titulo }}</p>
+                </div>
+              </div>
+              <div class="body">
+                <h3 class="margin-clear">{{ investigator_info.nombres }} {{ investigator_info.apellidos }}</h3>
+
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle colored margin-clear">
+                  <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                  <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                  <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9">
+            <p class="text-justify">
+              {{ investigator_info.presentacion | safe }}
+            </p>
+            <div class="col-md-12 no-padding-left">
+              <h3 class="title"><strong>Lista de Publicaciones</strong></h3>
+              <ul class="list-icons">
+                {% for blogs in blogs_paginator %}
+                    {# Each "contact" is a Contact model object. #}
+                    <li><i class="icon-check pr-10"></i> <span class="media-heading"><a href="/publicaciones/categorias/{{ blogs.categorys.slug }}/{{ blogs.slug }}">{{ blogs.title }}</a></span></li>
+                {% endfor %}
+              </ul>
+              <ul class="pagination">
+
+                  {% if blogs_paginator.has_previous %}
+                    <li><a class="cursor" href="?page={{ blogs_paginator.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                  {% endif %}
+
+                  {% for page in blogs_paginator.paginator.page_range %}
+                      {% ifequal page blogs_paginator.number %}
+                        <!-- Do something special for this page -->
+                        <li class="active">
+                          <a class="cursor" href="?page={{ page }}">{{ page }}</a>
+                        </li>
+
+                      {% else %}
+                        <!-- All the other pages -->
+                        <li>
+                          <a class="cursor" href="?page={{ page }}">{{ page }}</a>
+                        </li>
+                      {% endifequal %}
+
+                  {% endfor %}
+
+                  {% if blogs_paginator.has_next %}
+                  <li><a class="cursor" href="?page={{ blogs_paginator.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                  {% endif %}
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-3 hidden-xs">
+            <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+              <div class="overlay-container overlay-visible">
+                {% if investigator_info.fotoPerfil == 'False' %}
+                  <img class="center-block" src="/media/profiles/avatar5.png" alt="">
+                {% else %}
+                  <img class="center-block" src="{{ MEDIA_URL }}{{ investigator_info.fotoPerfil }}" alt="">
+                {% endif %}
+
+                <div class="overlay-bottom">
+                  <p class="small margin-clear">{{ investigator_info.titulo }}</p>
+                </div>
+              </div>
+              <div class="body">
+                <h3 class="margin-clear">{{ investigator_info.nombres }} {{ investigator_info.apellidos }}</h3>
+
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle colored margin-clear">
+                  <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                  <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                  <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator mt-10"></div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel-group collapse-style-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-2">
+                  <i class="fa fa-info pr-10"></i>¿Cómo Contactarme?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne-2" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p class="text-center">
+                  {{ investigator_info.nombres }} {{ investigator_info.apellidos }}
+                  <br>
+                  <br>
+                  Universidad Nacional de Ingeniería
+                  <br>
+                  <br>
+                  {{ investigator_info.departamento }}
+                  <br>
+                  <br>
+                  Avenida Universitaria, frente a la UCA.
+                  <br>
+                  <br>
+                  Managua, Nicaragua
+                  <br>
+                  <br>
+                  Tel. {{ investigator_info.telefono }}
+                  <br>
+                  <br>
+                  e-mail: {{ investigator_info.correo }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'js/sarec/investigator_index.js' %}"></script>
+{% endblock script %}

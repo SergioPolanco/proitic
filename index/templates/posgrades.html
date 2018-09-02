@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="index.html">Inicio</a></li>
+      <li class="active">Trabajos de Posgrados </li>
+    </ol>
+  </div>
+</div>
+
+<div class="main-container padding-bottom-clear" style="padding-top:20px;">
+  <section class="section default-bg clearfix blue">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="call-to-action text-center">
+            <div class="row">
+              <div class="col-sm-12">
+                <h3 class="mt-10 text-muted text-white">Observa los distintos <strong>Posgrados</strong>.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="row">
+      <div class="main-container col-md-12" style="padding-top:0px;">
+        <div class="masonry-grid row">
+          <!-- Articulo Publicado -->
+            <div class="timeline clearfix" style="margin-top:0px;">
+              {% for posgrade in posgrades_list %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="timeline-item pull-right">
+                  <article class="blogpost shadow light-gray-bg bordered object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
+                    <header>
+                      <h2 class="text-center"><a href="{% url 'posgrade.detail' posgrade.slug %}">{{ posgrade.titulo }}</a></h2>
+                      <div class="post-info">
+                        <span class="post-date">
+                          <i class="icon-calendar"></i>
+                          <span class="month">{{ posgrade.created_at|date }}</span>
+                        </span>
+                        <span class="submitted"><i class="icon-user-1"></i> Por <a href="/investigador/{{blog.owner.slug}}">{{ posgrade.estudiante }}</a></span>
+                      </div>
+                    </header>
+                    <div class="blogpost-content">
+                      {{posgrade.descripcion|truncatechars:1000|safe}}
+                    </div>
+                  </article>
+                </div>
+                {% else %}
+                <div class="timeline-item">
+                  <!-- blogpost start -->
+                  <article class="blogpost shadow light-gray-bg bordered object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
+                    <header>
+                      <h2 class="text-center"><a href="{% url 'posgrade.detail' posgrade.slug %}">{{posgrade.titulo}}</a></h2>
+                      <div class="post-info">
+                        <span class="post-date">
+                          <i class="icon-calendar"></i>
+                          <span class="month">{{ posgrade.created_at|date }}</span>
+                        </span>
+                        <span class="submitted"><i class="icon-user-1"></i> Por <a href="#">{{ posgrade.estudiante }}</a></span>
+                      </div>
+                    </header>
+                    <div class="blogpost-content">
+                      {{posgrade.descripcion|truncatechars:500|safe}}
+                    </div>
+                  </article>
+                  <!-- blogpost end -->
+                </div>
+                {% endif %}
+              {% endfor %}
+
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

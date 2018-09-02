@@ -1,0 +1,300 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li class="active">Publicación </li>
+    </ol>
+  </div>
+</div>
+
+<div class="main-container padding-bottom-clear">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="page-title">Publicación</h1>
+        <article class="blogpost full">
+          <header>
+            <div class="post-info">
+              <span class="post-date">
+                <i class="icon-calendar"></i>
+                <span class="day">12</span>
+                <span class="month">Mayo del 2016</span>
+              </span>
+              <span class="submitted"><i class="icon-user-1"></i> por <a href="#">Leonel Plazaola</a></span>
+              <span class="comments"><i class="icon-chat"></i> <a href="#">22 comentarios</a></span>
+            </div>
+          </header>
+          <div class="blogpost-content">
+            <p class="text-justify">
+            The current trend of openness and modularity on the Power
+            Network Control Systems are conceived originally, mainly if
+            not totally, for expanding the life cycle of the modern and
+            coming generations of Control Centers. But there are a
+            considerable amount of existing "old" Control Centers in
+            Utilities with lack of experience in the exploitation and with
+            economical limitations for replace them for new ones at one
+            shot. In some cases, even with available budget for Control
+            Center’s modernization there is a lack of systematic
+            recollection of the experiences on the technical evolution of
+            the current one and about the new and demanded needs. This
+            paper is recommending and sustaining a strategy for a
+            planing process for the fulfillment of the new requirements or
+            functionality to the Control Centers in Central America. It is
+            intended to keep in mind the understanding of the real needs
+            and combining the technological solution with the
+            evolutionary standards and the state of the art of openness
+            and EMS in the modernization of the SCADA/AGC Control
+            Centers [1]. This paper is based in a characterization study of
+            the Control Center in Central America, presenting some
+            remarks about the partial results of such study. It is presented
+            some complementary perspectives of the challenges to be
+            faced for such Centers.
+            <br>
+            <br>
+            In the Central America region, there is a plan of a complete
+            Regional Electrical Interconnection which is going to
+            demand a closer interchange of information, more
+            operational coordination, reliable communications,
+            interconnected network analysis, new functionality, and a
+            Regional structure of the Electrical Interconnection amongst
+            the Control Centers of the six countries (Guatemala,
+            Honduras, El Salvador, Nicaragua, Costa Rica and Panamá).
+            The experiences on the energy trading are until now coming
+            from bilateral and different agreements and procedures
+            amongst the Countries interconnected.
+            Moreover, three of the six Central American Countries are in
+            a very advance phase for a complete renovation and
+            technological modernization of their current Control Centers.
+            Some of them have set the financial source for the budget and
+            already assigned the procurement of the new Control Center.
+            There have been some surveys about the foreseeable
+            technical requirements for supporting this Regional Electrical
+            Interconnection and for the recommendations on the
+            modernization of the Control Centers by each Country's
+            Utility and at the Regional level by PARSEICA1
+             and other
+            International Consultants. Most of these studies are focusing
+            on the technical implementations tuned on the “the state of
+            the art” trends on open SCADA/EMS Systems, more than
+            focusing on evaluation on the current operational status,
+            experiences or based in clear Utilities expansion plans or
+            strategies.
+            This opportunity and dynamic situation was inducing the
+            study: Characterization of the Power Control Centers in
+            Central America at the Generation and Transmission level. It
+            is also the practical base of the proposed Strategic Planning
+            Process Approach for technological migration at the Control
+            Centers.
+            </p>
+          </div>
+          <footer class="clearfix">
+            <div class="tags pull-left"><i class="icon-tags"></i> <a href="#">Categoria 1</a>, <a href="#">Categoria 2</a>, <a href="#">Categoria 3</a></div>
+            <div class="link pull-right">
+              <ul class="social-links circle small colored clearfix margin-clear text-right animated-effect-1">
+                <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+                <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+              </ul>
+            </div>
+          </footer>
+        </article>
+        <div id="comments" class="comments">
+          <h2 class="title">Comentarios(3)</h2>
+
+          <!-- comment start -->
+          <div class="comment clearfix">
+            <div class="comment-avatar">
+              <img class="img-circle" src="{% static 'img/avatar.jpg' %}" alt="avatar">
+            </div>
+            <header>
+              <h3>Titulo del Comentario</h3>
+              <div class="comment-meta">Por <a href="#">administrador</a> | Hoy, 12:31</div>
+            </header>
+            <div class="comment-content">
+              <div class="comment-body clearfix">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo </p>
+                <a href="blog-post.html" class="btn-sm-link link-dark pull-right"><i class="fa fa-reply"></i> Responder</a>
+              </div>
+            </div>
+
+            <!-- comment start -->
+            <div class="comment clearfix">
+              <div class="comment-avatar">
+                <img class="img-circle" src="{% static 'img/avatar.jpg' %}" alt="avatar">
+              </div>
+              <header>
+                <h3>Titulo del Comentario</h3>
+                <div class="comment-meta">Por <a href="#">administrador</a> | Hoy, 12:31</div>
+              </header>
+              <div class="comment-content">
+                <div class="comment-body clearfix">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo </p>
+                  <a href="blog-post.html" class="btn-sm-link link-dark pull-right"><i class="fa fa-reply"></i> Responder</a>
+                </div>
+              </div>
+            </div>
+            <!-- comment end -->
+
+          </div>
+          <!-- comment end -->
+
+          <!-- comment start -->
+          <div class="comment clearfix">
+            <div class="comment-avatar">
+              <img class="img-circle" src="{% static 'img/avatar.jpg' %}" alt="avatar">
+            </div>
+            <header>
+              <h3>Titulo del Comentario</h3>
+              <div class="comment-meta">Por <a href="#">administrador</a> | Hoy, 12:31</div>
+            </header>
+            <div class="comment-content">
+              <div class="comment-body clearfix">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo </p>
+                <a href="blog-post.html" class="btn-sm-link link-dark pull-right"><i class="fa fa-reply"></i> Responder</a>
+              </div>
+            </div>
+          </div>
+          <!-- comment end -->
+
+        </div>
+        <div class="comments-form">
+          <h2 class="title">AGREGA TU COMENTARIO</h2>
+          <form role="form" id="comment-form">
+            <div class="form-group has-feedback">
+              <label for="name4">Nombre</label>
+              <input type="text" class="form-control" id="name4" placeholder="" name="name4" required>
+              <i class="fa fa-user form-control-feedback"></i>
+            </div>
+            <div class="form-group has-feedback">
+              <label for="subject4">Asunto</label>
+              <input type="text" class="form-control" id="subject4" placeholder="" name="subject4" required>
+              <i class="fa fa-pencil form-control-feedback"></i>
+            </div>
+            <div class="form-group has-feedback">
+              <label for="message4">Mensaje</label>
+              <textarea class="form-control" rows="8" id="message4" placeholder="" name="message4" required></textarea>
+              <i class="fa fa-envelope-o form-control-feedback"></i>
+            </div>
+            <input type="submit" value="Enviar" class="btn btn-default">
+          </form>
+        </div>
+      </div>
+      <aside class="col-md-4 col-lg-3 col-lg-offset-1">
+        <div class="sidebar">
+
+          <div class="block clearfix">
+            <h3 class="title">Ultimos Tweets</h3>
+            <div class="separator-2"></div>
+            <ul class="tweets">
+              <li>
+                <i class="fa fa-twitter"></i>
+                <p><a href="#">@lorem</a> ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a href="#">http://t.co/dzLEYGeEH9</a>.</p><span>Hace 16 horas</span>
+              </li>
+              <li>
+                <i class="fa fa-twitter"></i>
+                <p><a href="#">@lorem</a> ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a href="#">http://t.co/dzLEYGeEH9</a>.</p><span>Hace 16 horas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="block clearfix">
+            <h3 class="title">Ultimas Noticias</h3>
+            <div class="separator-2"></div>
+            <div class="media margin-clear">
+              <div class="media-left">
+                <div class="overlay-container">
+                  <span class="fa fa-newspaper-o icon default-bg"></span>
+                  <a href="#" class="overlay-link small"><i class="fa fa-link"></i></a>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="media-heading"><a href="blog.php">Lorem ipsum dolor sit amet...</a></h6>
+                <p class="small margin-clear"><i class="fa fa-calendar pr-10"></i>Marzo 23, 2015</p>
+              </div>
+              <hr>
+            </div>
+            <div class="media margin-clear">
+              <div class="media-left">
+                <div class="overlay-container">
+                  <span class="fa fa-newspaper-o icon default-bg"></span>
+                  <a href="#" class="overlay-link small"><i class="fa fa-link"></i></a>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="media-heading"><a href="blog-post.html">Lorem ipsum dolor sit amet...</a></h6>
+                <p class="small margin-clear"><i class="fa fa-calendar pr-10"></i>Marzo 23, 2015</p>
+              </div>
+              <hr>
+            </div>
+            <div class="media margin-clear">
+              <div class="media-left">
+                <div class="overlay-container">
+                  <span class="fa fa-newspaper-o icon default-bg"></span>
+                  <a href="#" class="overlay-link small"><i class="fa fa-link"></i></a>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="media-heading"><a href="blog-post.html">Lorem ipsum dolor sit amet...</a></h6>
+                <p class="small margin-clear"><i class="fa fa-calendar pr-10"></i>Marzo 23, 2015</p>
+              </div>
+              <hr>
+            </div>
+            <div class="media margin-clear">
+              <div class="media-left">
+                <div class="overlay-container">
+                  <span class="fa fa-newspaper-o icon default-bg"></span>
+                  <a href="#" class="overlay-link small"><i class="fa fa-link"></i></a>
+                </div>
+              </div>
+              <div class="media-body">
+                <h6 class="media-heading"><a href="blog-post.html">Lorem ipsum dolor sit amet...</a></h6>
+                <p class="small margin-clear"><i class="fa fa-calendar pr-10"></i>Marzo 23, 2015</p>
+              </div>
+              <hr>
+            </div>
+            <div class="text-right space-top">
+              <a href="../noticias/noticias.php" class="link-dark"><i class="fa fa-plus-circle pl-5 pr-5"></i>Todas</a>
+            </div>
+          </div>
+          <div class="block clearfix">
+            <h3 class="title">Descargar Archivo</h3>
+            <div class="separator-2"></div>
+            <a href="#" class="btn btn-default btn-animated btn-lg">
+              Descargar
+              <i class="fa fa-download"></i>
+            </a>
+          </div>
+          <div class="block clearfix ">
+            <form role="search">
+              <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="Buscar">
+                <i class="fa fa-search form-control-feedback"></i>
+              </div>
+            </form>
+          </div>
+        </div>
+       </aside>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

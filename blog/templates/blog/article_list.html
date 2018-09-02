@@ -1,0 +1,162 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+
+{% block title %}Publicaciones | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+  <link rel="stylesheet" href="{% static 'css/sarec/template.css' %}">
+  <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+{% endblock header %}
+
+{% block breadcrumbs %} Publicaciones {% endblock breadcrumbs %}
+
+{% block titlepage %}Publicaciones{% endblock titlepage %}
+{% block description %}Publicaciones Registradas{% endblock description %}
+
+{% block content %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="alert alert-success" style="padding-bottom:40px;">
+      <div class="nav-search" style="right:30px;">
+        <form class="form-search">
+          <span class="input-icon">
+            <input type="text" placeholder="Buscar ..." class="nav-search-input" autocomplete="off">
+            <i class="ace-icon fa fa-search nav-search-icon"></i>
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% for message in messages %}
+    
+      {% if message.tags == 'info' %} 
+        <div class="alert alert-success">
+          <script type="text/javascript">
+            $.gritter.removeAll();
+            var unique_id = $.gritter.add({
+                title: "Excelente!",
+                text: "{{ message }}",
+                sticky: true,
+                time: '',
+                class_name: 'gritter-success gritter-center'
+            });
+          </script>
+          
+        </div>
+      {% endif %}
+      {% if message.tags == 'error' %} 
+        <script type="text/javascript">
+            $.gritter.removeAll();
+            var unique_id = $.gritter.add({
+                title: "Error!",
+                text: "{{ message }}",
+                sticky: true,
+                time: '',
+                class_name: 'gritter-error gritter-center'
+            });
+          </script>
+      {% endif %}
+  {% endfor %}
+  <div class="col-xs-12">
+    <div class="col-xs-6 col-sm-4 col-md-3 pricing-box">
+      <div class="widget-box widget-color-red3">
+        <div class="widget-header">
+          <h5 class="widget-title bigger lighter">Añadir Artículo</h5>
+        </div>
+        <div class="widget-body">
+          <div class="widget-main">
+            <article class="article">
+              <p class="text-justify">
+                Por favor, antes de crear un artículo, lee el manual y sírvete del asistente para crear tu primera contribución. Si ya lo has hecho, opcionalmente puedes introducir en el cuadro de busqueda el título o alguna palabra clave del artículo que has decidido redactar.
+              </p>
+            </article>
+            <hr>
+          </div>
+          <div>
+            <a href="/administrator/blog/add/" class="btn btn-block btn-danger">
+              <i class="ace-icon fa fa-plus bigger-110"></i>
+              <span>Agregar</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% for article in articles %}
+        <div class="col-xs-6 col-sm-4 col-md-3 pricing-box">
+          <div class="widget-box widget-color-blue">
+            <div class="widget-header">
+              <span class="widget-title bigger lighter">{{ article.title|truncatechars:38 }}</span>
+              
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <ul class="list-unstyled spaced2">
+                        <li>
+                            <i class="ace-icon fa fa-user green"></i>
+                            <strong>Por: </strong>{{article.owner.nombres}} {{article.owner.apellidos}}
+                            <a href="{% url 'blog.delete' article.slug %}" class="btn btn-danger btn-sm pull-right" data-toggle="tooltip" data-placement="top" title="Borrar Articulo">
+											    	  <i class="ace-icon fa fa-trash icon-only"></i>
+										        </a>
+                        </li>
+                        <li>
+                            <i class="ace-icon fa fa-calendar green"></i>
+                            <strong>El: </strong>{{ article.created_at|date:'d F Y' }}
+                        </li>
+                        <li>
+                            <i class="ace-icon fa fa-clock-o green"></i>
+                             <strong>Hace: </strong>{{ article.created_at|timesince }}
+                        </li>
+                        <li>
+                            <i class="ace-icon fa fa-tags green"></i>
+                            <strong>Etiquetas: </strong>{{ article.get_string_tags }}
+                        </li>
+                        <li>
+                            <i class="ace-icon fa fa-link green"></i>
+                            <strong>Url: </strong><a target="_blank" href="/publicaciones/categorias/{{article.categorys.slug}}/{{article.slug}}">../publicaciones/{{ article.slug }}</a>
+                        </li>
+                    </ul>
+                <hr>
+                
+              </div>
+              <div>
+                <a href="/administrator/blog/{{ article.slug }}/" class="btn btn-block btn-primary">
+                  <i class="ace-icon fa fa-pencil bigger-110"></i>
+                  <span>Modificar</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+  <div class="col-xs-12">
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="administrator/blog/?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="/administrator/blog/?page={{i}}">{{ i }}</a>
+                </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="/administrator/blog/?page={{ page_obj.next_page_number }}">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+    <script type="text/javascript">
+      $( "[href='/administrator/blog/']" ).parent().addClass('active').parent().addClass('open');
+    </script>
+{% endblock script %}

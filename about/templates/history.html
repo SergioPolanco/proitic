@@ -1,0 +1,83 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+
+{% block title %}Historia | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %} Historia {% endblock breadcrumbs %}
+
+{% block titlepage %}Otros{% endblock titlepage %}
+{% block description %}Historia{% endblock description %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="hr dotted">
+            </div>
+            <form name="formHistory" id="formHistory" class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="tabbable">
+                    <ul class="nav nav-tabs padding-16">
+                        <li class="active">
+                            <a data-toggle="tab" href="#edit-basic">
+                                <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                Información
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content profile-edit-tab-content">
+                        <div id="edit-basic" class="tab-pane in active">
+                            <h4 class="header blue bolder smaller">Historia</h4>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <textarea name="history" id="trumbowyg-demo">{{ history.history  | default:'' }}</textarea>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="space-4"></div>
+                <div class="clearfix" id="message">
+                </div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <i class="ace-icon fa fa-spinner fa-spin orange bigger-225 text-center hide load"></i>
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Guardar
+                        </button>
+                        &nbsp; &nbsp;
+                        <button class="btn" type="reset" name="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            Reiniciar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+
+    <script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+    <script src="{% static 'js/sarec/highlight.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/es.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/sarec/history.js' %}"></script>
+{% endblock script %}

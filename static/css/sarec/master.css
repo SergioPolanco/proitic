@@ -1,0 +1,111 @@
+.nav-pills > li > a {
+    color: #09afdf;
+}
+#map {
+  height: 100%;
+  position:relative;
+  z-index:2
+}
+.cursor {
+  cursor: pointer!important;
+}
+.text-black {
+  color: #000!important;
+}
+#large{
+  height: 100%!important;
+}
+.no-padding-top {
+  padding-top: 0!important;
+}
+.no-padding-bottom {
+  padding-bottom: 0!important;
+}
+.article-PROITIC {
+    text-align: justify;
+    font-size: 16px;
+    color: #0F0F0F;
+}
+.article-PROITIC img {
+    margin-left: auto;
+    margin-right: auto;
+}
+.article-PROITIC sub {
+    font-weight: bold!important;
+}
+.PROITIC-PROJECT p {
+    text-align: justify;
+    font-size: 15px;
+}
+.article-PROITIC ul li {
+    text-align: justify;
+}
+.margin-top-40 {
+    margin-top: 40px!important;
+}
+.margin-top-20 {
+    margin-top: 20px!important;
+}
+.margin-bottom-40 {
+    margin-bottom: 40px!important;
+}
+.no-margin-bottom {
+    margin-bottom: 0px!important;
+}
+.no-margin-top {
+    margin-top: 0px!important;
+}
+.article-PROITIC blockquote {
+    color: #777777;
+    margin: 0;
+}
+.no-border-radius {
+  border-radius: 0!important;
+}
+.blue {
+  background-color: #003782!important;
+}
+.header-top {
+  color: #fff!important;
+}
+.social-links li a {
+  background-color: #002E6C;
+  border: 1px solid #002E6C;
+  color: #fff;
+}
+.btn-default {
+  color: #fff;
+  background-color: #002E6C;
+  border-color: #002E6C;
+}
+.btn-default:hover, .btn-default:active, .btn-default:visited, .btn-default:focus {
+  color: #fff;
+  background-color: #002E6C;
+  border-color: #002E6C;
+}
+.text-white {
+  color: #fff!important;
+}
+.text-blue {
+  color: #003782!important;
+}
+.padding-bottom-5 {
+  padding-bottom: 5px!important;
+}
+.no-padding-left {
+  padding-left: 0!important;
+}
+.no-padding-right {
+  padding-right: 0!important;
+}
+.blogpost-content p {
+  font-size: 14px!important;
+  text-align: justify!important;
+}
+.blogpost-content ul li span {
+  font-size: 13px!important;
+  text-align: justify!important;
+}
+.masonry-grid-item .blogpost-content p {
+  font-family: 'Roboto', sans-serif!important;
+}

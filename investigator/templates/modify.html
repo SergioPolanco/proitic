@@ -1,0 +1,299 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+{% block title %}Investigadores | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/chosen.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/template.css' %}">
+{% endblock header %}
+{% block breadcrumbs %} Investigadores {% endblock breadcrumbs %}
+{% block titlepage %}Investigadores{% endblock titlepage %}
+{% block description %}Editar Investigadores{% endblock description %}
+{% block content %}
+<div class="row" id="divModificarInvestigador" style="display:none">
+  <div class="col-xs-12">
+    <form class="form-horizontal" id="form-modificar-investigador" name="form-modificar-investigador" method="put">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="col-xs-4 col-xs-offset-3">
+          <div class="center-block">
+            <label class="ace-file-input ace-file-multiple">
+              <input name="fotoPerfil" type="file" accept="image/gif, image/jpeg, image/png, image/jpg">
+              <span class="profile-picture center-block" style="display:block!important;border: 0px solid #CCC;box-shadow: 0px 0px 0px rgba(0,0,0,.15);">
+                <img id="avatarimage" name="avatarimage" class="center-block editable img-responsive editable-click editable-empty" src="{% static 'img/image.png' %}" style="max-height:160px;"></img>
+              </span>
+            </label>
+            <div class="space-4"></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group hide">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-username">Id:</label>
+        <div class="col-sm-9">
+          <input class="col-xs-12 col-sm-10" readonly autocomplete="off" type="hidden" id="txtId" name="txtId" placeholder="id" readonly value="">
+        </div>
+      </div>
+      <div class="form-group" id="fgNombres">
+        <label for="txtNombres" class="col-xs-3 control-label  no-padding-right">Nombres:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtNombres" name="txtNombres" class="col-xs-10 col-sm-5 requerid" placeholder="Nombres">
+        </div>
+      </div>
+
+      <div class="form-group" id="fgApellidos">
+        <label for="txtApellidos" class="col-xs-3 control-label  no-padding-right">Apellidos:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtApellidos" name="txtApellidos" class="col-xs-10 col-sm-5 requerid" placeholder="Apellidos">
+        </div>
+      </div>
+
+      <div class="form-group" id="fgFechaNac">
+        <label for="txtFechaNac" class="col-xs-3 control-label  no-padding-right">Fecha de Nacimiento:</label>
+        <div class="col-xs-9">
+          <div class="input-medium">
+            <div class="input-group">
+              <input type="text" id="txtFechaNac" name="txtFechaNac" class="input-medium date-picker requerid" date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+              <span class="input-group-addon">
+                <i class="ace-icon fa fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="fgCorreo">
+        <label for="txtCorreo" class="col-xs-3 control-label  no-padding-right">Correo:</label>
+        <div class="col-xs-9">
+          <span class="input-icon input-icon-right">
+            <input type="email" id="txtCorreo" name="txtCorreo" class="input-large requerid" placeholder="usuario@gmail.com">
+            <i class="ace-icon fa fa-envelope"></i>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="form-group" id="fgTelefono">
+        <label for="txtTelefono" class="col-xs-3 control-label  no-padding-right">Teléfono:</label>
+        <div class="col-xs-9">
+          <span class="input-icon input-icon-right">
+            <input type="text" id="txtTelefono" name="txtTelefono" class="input-medium input-mask-phone requerid" placeholder="(505) 9999-9999">
+            <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="form-group" id="fgDireccion">
+        <label for="txtDireccion" class="col-xs-3 control-label  no-padding-right">Dirección:</label>
+        <div class="col-xs-9">
+          <textarea id="txtDireccion" name="txtDireccion" class="col-xs-5"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group" id="fgDepartamento">
+        <label for="txtDepartamento" class="col-xs-3 control-label  no-padding-right">Departamento:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtDepartamento" name="txtDepartamento" class="col-xs-10 col-sm-5 requerid">
+        </div>
+      </div>
+
+
+      <div class="form-group" id="fgTitulo">
+        <label for="txtTitulo" class="col-xs-3 control-label  no-padding-right">Título:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtTitulo" name="txtTitulo" class="col-xs-10 col-sm-5 requerid">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3 no-padding-right no-padding-top">Activo</label>
+        <div class="col-xs-12 col-sm-9">
+          <div>
+            <label>
+              <input name="activo" type="checkbox" class="ace">
+              <span class="lbl"> Si</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="fgCuentaUsuario">
+          <label class="col-sm-3 control-label no-padding-right" for="form-field-first">Cuenta de usuario:</label>
+          <div class="col-xs-3">
+              <select data-placeholder="Elija una cuenta de usuario..." class="col-xs-12 chosen-select" name="cmbCuentaUsuario">
+                  <option></option>
+                  {% for user in user_list %}
+                    <option value='{{ user.id }}'>{{ user.username }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+      </div>
+
+      <div class="form-group" id="fgPresentacion">
+        <label for="txtPresentacion" class="col-xs-3 control-label  no-padding-right">Presentación:</label>
+        <div class="col-xs-9">
+          <textarea id="txtPresentacion" name="txtPresentacion" class="col-xs-7" rows="10"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="clearfix form-actions">
+          <div class="col-xs-offset-3 col-md-9">
+            <i class="ace-icon fa fa-spinner fa-spin orange bigger-225 text-center hide load"></i>
+            <button type="submit" class="btn btn-success" id="btnGuardar">
+              <i class="ace-icon fa fa-check bigger-110"></i> Guardar
+            </button>
+
+            <button class="btn" type="button" name="cancelar">
+              <i class="ace-icon fa fa-undo bigger-110"></i> Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row form-search">
+  <div class="col-xs-12">
+    <div class="table-header">
+      Resultados para "Investigadores Registrados"
+    </div>
+    <div>
+      <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+        <table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="sample-table-2_info">
+          <thead>
+            <tr role="row">
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Id</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Nombres</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">Apellidos</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">Fecha de nacimiento</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Clicks: activate to sort column ascending">
+                <i class="ace-icon fa fa-envelope-o bigger-110 hidden-480"></i> Email
+              </th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">Teléfono</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending">Dirección</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Departamento</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Titulo</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Foto</th>
+              <th class="hidden-480 sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Estado</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Presentacion</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Id Cuenta</th>
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Update: activate to sort column ascending">Username</th>
+
+              <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for investigator in investigator_list %}
+            <tr role="row" class="odd" name="{{ investigator.id }}">
+
+              <td class="hide">
+                {{ investigator.id }}
+              </td>
+              <td>
+                {{ investigator.names }}
+              </td>
+
+              <td>
+                {{ investigator.surnames }}
+              </td>
+              <td class="hide">
+                {{ investigator.birthdate|date:'Y-m-d' }}
+              </td>
+              <td>
+                {{ investigator.email }}
+              </td>
+              <td>
+                {{ investigator.phone }}
+              </td>
+              <td class="hide">
+                {{ investigator.address}}
+              </td>
+
+              <td>
+                {{ investigator.workDepartment }}
+              </td>
+
+              <td class="hide">
+                {{ investigator.academicTitle }}
+              </td>
+              <td class="hide">
+                {% if investigator.photo == 'False' %} /media/profiles/avatar5.png {% else %} {{ MEDIA_URL }}{{ investigator.photo }} {% endif %}
+              </td>
+              <td class="hidden-480">
+                {% if investigator.active == True %}
+                <span class="label label-sm label-info arrowed arrowed-righ">Activo</span> {% else %}
+                <span class="label label-sm label-warning arrowed arrowed-righ">Inactivo</span> {% endif %}
+              </td>
+              <td class="hide">
+                {{ investigator.presentation }}
+              </td>
+              <td class="hide">
+                {{ investigator.userId.id }}
+              </td>
+              <td class="hide">
+                {{ investigator.userId.username }}
+              </td>
+              <td>
+                <div class="hidden-sm hidden-xs action-buttons">
+                  <a class="blue" href="#">
+                    <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                  </a>
+                  <a class="green" href="#">
+                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                  </a>
+                </div>
+                <div class="hidden-md hidden-lg">
+                  <div class="inline position-relative">
+                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                      <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                      <li>
+                        <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+                          <span class="blue">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                        </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                          <span class="green">
+                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="dialog-message" class="hide">
+</div>
+
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/chosen.jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/modifyInvestigator.js' %}"></script>
+{% endblock script %}

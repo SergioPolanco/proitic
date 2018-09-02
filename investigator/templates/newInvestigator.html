@@ -1,0 +1,160 @@
+{% extends 'config.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Investigadores | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+  <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/chosen.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/template.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %} Agregar Investigadores {% endblock breadcrumbs %}
+
+{% block titlepage %}Investigadores{% endblock titlepage %}
+
+{% block description %}Agregar Investigador{% endblock description %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-xs-12">
+        <form class="form-horizontal" id="formInvestigator" name="formInvestigator" method="post">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <div class="col-xs-4 col-xs-offset-3">
+              <div class="center-block">
+                <label class="ace-file-input ace-file-multiple">
+                  <input id="fotoPerfil" name="fotoPerfil" type="file" accept="image/gif, image/jpeg, image/png, image/jpg">
+                  <span class="profile-picture center-block" style="display:block!important;border: 0px solid #CCC;box-shadow: 0px 0px 0px rgba(0,0,0,.15);">
+                    <img id="avatarimage" name="photo" class="center-block editable img-responsive editable-click editable-empty" src="{% static 'img/image.png' %}" style="max-height:160px;"></img>
+                  </span>
+                </label>
+                <div class="space-4"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="fgNames">
+            <label for="names" class="col-xs-3 control-label  no-padding-right">Nombres:</label>
+            <div class="col-xs-9">
+              <input type="text" id="names" name="names" class="col-xs-10 col-sm-5 required" placeholder="Nombres">
+            </div>
+          </div>
+
+          <div class="form-group" id="fgSurnames">
+            <label for="surnames" class="col-xs-3 control-label  no-padding-right">Apellidos:</label>
+            <div class="col-xs-9">
+              <input type="text" id="surnames" name="surnames" class="col-xs-10 col-sm-5 required" placeholder="Apellidos">
+            </div>
+          </div>
+
+          <div class="form-group" id="fgBirthdate">
+            <label for="birthdate" class="col-xs-3 control-label  no-padding-right">Fecha de Nacimiento:</label>
+            <div class="col-xs-9">
+              <div class="input-medium">
+                <div class="input-group">
+                  <input type="text" id="birthdate" name="birthdate" class="input-medium date-picker required" date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+                  <span class="input-group-addon">
+                    <i class="ace-icon fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" id="fgEmail">
+            <label for="email" class="col-xs-3 control-label no-padding-right">Correo:</label>
+            <div class="col-xs-9">
+              <span class="input-icon input-icon-right">
+                <input type="email" id="email" name="email" class="input-large required" placeholder="usuario@gmail.com">
+                <i class="ace-icon fa fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group" id="fgPhone">
+            <label for="phone" class="col-xs-3 control-label  no-padding-right">Teléfono:</label>
+            <div class="col-xs-9">
+              <span class="input-icon input-icon-right">
+                <input type="text" id="phone" name="phone" class="input-medium input-mask-phone required" placeholder="(505) 9999-9999">
+                <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group" id="fgAddress">
+            <label for="address" class="col-xs-3 control-label  no-padding-right">Dirección:</label>
+            <div class="col-xs-9">
+              <textarea id="address" name="address" class="col-xs-5"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group" id="fgWorkDepartment">
+            <label for="workDepartment" class="col-xs-3 control-label  no-padding-right">Area de Trabajo:</label>
+            <div class="col-xs-9">
+              <input type="text" id="workDepartment" name="workDepartment" class="col-xs-10 col-sm-5 required">
+            </div>
+          </div>
+
+          <div class="form-group" id="fgAcademicTitle">
+            <label for="academicTitle" class="col-xs-3 control-label  no-padding-right">Título:</label>
+            <div class="col-xs-9">
+              <input type="text" id="academicTitle" name="academicTitle" class="col-xs-10 col-sm-5 required">
+            </div>
+          </div>
+
+          <div class="form-group" id="fgUserId">
+              <label class="col-sm-3 control-label no-padding-right" for="form-field-first">Cuenta de usuario:</label>
+              <div class="col-xs-3">
+                  <select id="userId" name="userId" data-placeholder="Elija una cuenta de usuario..." class="col-xs-12 chosen-select">
+                      <option></option>
+                      {% for user in users %}
+                        <option value='{{ user.id }}'>{{ user.username }}</option>
+                      {% endfor %}
+                  </select>
+              </div>
+          </div>
+
+          <div class="form-group" id="fgPresentation">
+            <label for="presentation" class="col-xs-3 control-label  no-padding-right">Presentación:</label>
+            <div class="col-xs-9">
+              <textarea id="presentation" name="presentation" class="col-xs-7" rows="10"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="clearfix form-actions">
+              <div class="col-xs-offset-3 col-md-9">
+                <button type="submit" class="btn btn-success" id="btnGuardar">
+                  <i class="ace-icon fa fa-check bigger-110"></i>
+                  Guardar
+                </button>
+
+                <button type="reset" class="btn" id="btnReiniciar">
+                  <i class="ace-icon fa fa-undo bigger-110"></i>
+                  Reiniciar
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/chosen.jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/investigator.js' %}"></script>
+{% endblock script %}

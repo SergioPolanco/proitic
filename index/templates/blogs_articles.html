@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="index.html">Inicio</a></li>
+      <li class="active">Blogs </li>
+    </ol>
+  </div>
+</div>
+
+
+<section class="main-container">
+
+				<div class="container">
+					<div class="row">
+
+						<!-- main start -->
+						<!-- ================ -->
+						<div class="main col-md-12">
+                           
+                                <!-- ================ -->
+                                <div class="masonry-grid row" style="position: relative; height: 1733.17px;">
+                                    {% for blog in blogs_list %}
+                                    <!-- masonry grid item start -->
+                                    <div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4" style="position: absolute; left: 0px; top: 1124px;">
+                                        <!-- blogpost start -->
+                                        <article class="blogpost shadow light-gray-bg bordered object-non-visible animated object-visible fadeInUpSmall" data-animation-effect="fadeInUpSmall" data-effect-delay="100">
+                                            <header>
+                                                <h2 class="text-center"><a href="/blogs/{{blog.article.categorys.slug}}/{{blog.article.slug}}">{{blog.article.title}}</a></h2>
+                                                <div class="post-info">
+                                                    <span class="post-date">
+                                                        <i class="icon-calendar"></i>
+                                                        <span class="month">{{ blog.article.created_at|date }}</span>
+                                                    </span>
+                                                    <span class="submitted"><i class="icon-user-1"></i> Por <a href="/investigador/{{blog.article.owner.slug}}">{{ blog.article.owner.nombres }} {{ blog.article.owner.apellidos }}</a></span>
+                                                </div>
+                                            </header>
+                                            <div class="blogpost-content">
+                                                {{blog.body|truncatechars:1000|safe}}
+                                            </div>
+                                            <footer class="clearfix">
+                                                <div class="link pull-right"><i class="icon-link"></i><a href="/blogs/{{blog.article.categorys.slug}}/{{blog.article.slug}}">Leer mas...</a></div>
+                                            </footer>
+                                        </article>
+                                        <!-- blogpost end -->
+                                    </div>
+                                {% endfor %}
+								<!-- masonry grid item end -->
+
+								<!-- masonry grid item end -->
+							</div>
+							<!-- masonry grid end -->
+
+						</div>
+						<!-- main end -->
+
+					</div>
+				</div>
+			</section>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

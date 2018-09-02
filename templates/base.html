@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}</title>
+        <!--Descripcion del sistema-->
+        <meta name="description" content="Programa UNI/ASDI es un programa que promueve la investigación cientifica en líneas de interés propuestas por la Universidad Nacional de Ingenieria">
+        <!--Desarrolladores-->
+        <meta name="author" content="Alvaro Javier Romero Parrales - alvaro.jrp.1994@gmail.com, Sergio Israel Polanco Pao - polancosergio8@gmail.com">
+        <!--Metas Tags-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+        {% block header %}
+        {% endblock header %}
+    </head>
+    <body {% block body-attrib %}{% endblock body-attrib %}>
+        {% block content %}
+        {% endblock content %}
+
+        {% block script %}
+        {% endblock script %}
+    </body>
+</html>

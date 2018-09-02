@@ -1,0 +1,195 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li class="active">Perfil </li>
+    </ol>
+  </div>
+</div>
+
+<div class="main-container padding-bottom-clear">
+  <div class="container">
+    <div class="row">
+      <div class="main col-md-12">
+        <h3 class="title"><strong>Presentación</strong></h3>
+        <div class="separator-2"></div>
+        <div class="row">
+          <div class="col-md-9">
+            <p class="text-justify">
+              {{ investigator_info.presentacion }}
+            </p>
+          </div>
+          <div class="col-md-3">
+            <div class="image-box team-member style-2 shadow bordered mb-20 text-center">
+              <div class="overlay-container overlay-visible">
+                <img src="/media/{{ investigator_info.fotoPerfil }}" alt="">
+                <div class="overlay-bottom">
+                  <p class="small margin-clear">{{ investigator_info.titulo }}</p>
+                </div>
+              </div>
+              <div class="body">
+                <h3 class="margin-clear">{{ investigator_info.nombres }} {{ investigator_info.apellidos }}</h3>
+
+                <div class="separator mt-10"></div>
+                <ul class="social-links circle colored margin-clear">
+                  <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                  <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+                  <li class="xing"><a target="_blank" href="https://www.xing.com/"><i class="fa fa-xing"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator mt-10"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="title"><strong>Lista de Publicaciones</strong></h3>
+        <div class="separator-2"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="list-icons">
+              <li><i class="icon-check-1"></i> Leonel Plazaola, Enrique Silva, Norman Vargas, Jonny Flores, Mathias Ekstedt, " A Metamodel for Strategic Business and IT Alignment Assesment " In proceeding of conference on systems engineering research (CSER 2006), Los Angeles, USA, Abril 2006.<a href="../blog/blog.php">Leer Mas</a></li>
+              <li><i class="icon-check-1"></i> Mathias Ekstedt, Narcisa Jonsson, Leonel Plazaola, Enrique Silva, Norman Vargas, " An Organization Wide Approach for Assessing Strategic Business and IT Alignment " In proceedings of Portland International Conference on Management of Engineering and Technology (PICMET 05), Portland, USA, July 2005.<a href="#">Leer Mas</a></li>
+              <li><i class="icon-check-1"></i> Silva E., Plazaola L., Ekstedt M, “Strategic Business and IT Alignment: A Prioritized Theory Diagram”. Istambul , Turkey , July 2006.<a href="#">Leer Mas</a></li>
+              <li><i class="icon-check-1"></i> Enrique Silva, Leonel Plazaola, Johnny Flores, Norman Vargas, "How to identify and Measure the Level of Alignment between IT and Business Governance" In proceedings of Portland International Conference on Management of Engineering and Technology (PICMET 05), Portland, USA, July 2005.<a href="#">Leer Mas</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav>
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+       </nav>
+      </div>
+    </div>
+    <div class="separator mt-10"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="title"><strong>Tésis de Pregrado</strong></h3>
+        <div class="separator-2"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-colored">
+              <thead>
+                <tr>
+                  <th>
+                    Titulo de Tésis
+                  </th>
+                  <th>
+                    Estudiante
+                  </th>
+                  <th>
+                    Fecha
+                  </th>
+
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Reformas a la Industria Eléctrica. Un enfoque en los Centros Nacionales de Control Energético. Casos de Estudios: El Salvador y Nicaragua.
+                  </td>
+                  <td>
+                      Fidel Sánchez
+                  </td>
+                  <td>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Modelación del proceso de información en la Compra - Venta de energía en el Mercado Electrico Deregulado. - Perspectiva del CNDC
+                  <td>
+                    Norman Vargas Chevez
+                  </td>
+                  <td>
+                    Abril del 2002
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="separator mt-10"></div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel-group collapse-style-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-2">
+                  <i class="fa fa-info pr-10"></i>¿Cómo Contactarme?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne-2" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p class="text-center">
+                  {{ investigator_info.nombres }} {{ investigator_info.apellidos }}
+                  <br>
+                  <br>
+                  Universidad Nacional de Ingeniería
+                  <br>
+                  <br>
+                  {{ investigator_info.departamento }}
+                  <br>
+                  <br>
+                  Avenida Universitaria, frente a la UCA.
+                  <br>
+                  <br>
+                  Managua, Nicaragua
+                  <br>
+                  <br>
+                  Tel. {{ investigator_info.telefono }}
+                  <br>
+                  <br>
+                  e-mail: {{ investigator_info.correo }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

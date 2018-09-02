@@ -1,0 +1,110 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li><a class="link-dark" href="#">Otros</a></li>
+      <li class="active">Testimonios </li>
+    </ol>
+  </div>
+</div>
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-12">
+                <ul class="nav nav-pills" role="tablist">
+                    <!--li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> Listado de Testimonios</a></li>-->
+                    <h2 class="text-center">Listado de Testimonios</a></h2>
+                </ul>
+                <div class="tab-content clear-style">
+                    <div class="tab-pane active" id="pill-1">
+                        {% for testimony in params %}
+                            <div class="listing-item mb-20 col-xs-12 col-sm-6 clearfix" id="{{testimony.id}}">
+                                <div class="row grid-space-0">
+                                    <div class="col-xs-12">
+                                        <div class="body">
+                                            <h3 class="margin-clear">{{ testimony.name }}</h3>
+                                            <p>
+                                                <i class="fa fa-star text-default"></i>
+                                                <i class="fa fa-star text-default"></i>
+                                                <i class="fa fa-star text-default"></i>
+                                                <i class="fa fa-star text-default"></i>
+                                                <i class="fa fa-star text-default"></i>
+                                                {% if testimony.privacy == True %}
+                                                    <a href="#" class="btn-sm-link"><i class="icon-mail pr-5"></i>{{testimony.email}}</a>
+                                                {% endif %}
+                                            </p>
+                                            <p class="text-justify">{{ testimony.testimony|truncatechars:500 }}
+
+                                            <div class="elements-list clearfix">
+                  														<a href="#" class="pull-right btn btn-sm btn-default-transparent btn-animated" data-toggle="modal" data-target=".bs-example-modal{{testimony.id}}" >Ver mas...<i class="fa fa-search"></i></a>
+                  													</div>
+                                            <div class="modal fade bs-example-modal{{testimony.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                  <div class="modal-header" style="background-color: #fff; border-radius: 6px;">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <div class="col-xs-3" style="border-right: 3px solid #f5f5f5;">
+                                                      <div class="testimonial-image">
+                                                        {% if testimony.photo == "False" %}
+                                                            <img style="height:90px;width:90px!important;" src="/media/testimony/none.png" alt="{{ testimony.name }}" title="{{ testimony.name }}" class="img-circle">
+                                                        {% else %}
+                                                            <img style="height:90px;width:90px!important;" src="/media/{{ testimony.photo }}" alt="{{ testimony.name }}" title="{{ testimony.name }}" class="img-circle">
+                                                        {% endif %}
+                                                      </div>
+                                                    </div>
+                                                    <div class="col-xs-9">
+                                                      <h4 class="modal-title text-center" style="color:#000;">{{ testimony.name }}</h4>
+                                                      <div class="testimonial-info-2 text-center">{{ testimony.profession }}</div>
+                                                      {% if testimony.privacy == True %}
+                                                        <div class="testimonial-info-2 text-center">{{ testimony.email }}</div>
+                                                      {% endif %}
+                                                    </div>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p class="text-justify">{{ testimony.testimony }}
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <div class="col-xs-7">
+                                                      <ul class="social-links circle animated-effect-1 pull-left" style="margin-top:5px;margin-bottom:5px;">
+                                                          {% if testimony.privacy == True %}
+                                                            {% if testimony.facebook|length > 0 %}
+                                                              <li class="facebook"><a style="background-color:#fff;border: 1px solid #A9A9A9;color: #A9A9A9;" target="_blank" href="{{testimony.facebook}}"><i class="fa fa-facebook"></i></a></li>
+                                                            {% endif %}
+                                                            {% if testimony.twitter|length > 0 %}
+                                                              <li class="twitter"><a style="background-color:#fff;border: 1px solid #A9A9A9;color: #A9A9A9;" target="_blank" href="{{testimony.twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                                            {% endif %}
+                                                            {% if testimony.googlePlus|length > 0 %}
+                                                              <li class="googleplus"><a style="background-color:#fff;border: 1px solid #A9A9A9;color: #A9A9A9;" target="_blank" href="{{testimony.googlePlus}}"><i class="fa fa-google-plus"></i></a></li>
+                                                            {% endif %}
+                                                          {% endif %}
+                                                      </ul>
+                                                    </div>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

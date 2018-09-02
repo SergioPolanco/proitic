@@ -1,0 +1,62 @@
+[
+  {
+    "model": "blog.category",
+    "pk": 1,
+    "fields": {
+      "created_at": "2016-09-11 20:41:22.535000",
+      "name": "Cooperación / Vinculación",
+      "active": true,
+      "slug": "cooperacion_vinculacion"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 2,
+    "fields": {
+      "created_at": "2016-09-11 20:41:22.535000",
+      "name": "Posgrado",
+      "active": true,
+      "slug": "posgrado"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 3,
+    "fields": {
+      "created_at": "2016-09-11 20:41:22.535000",
+      "name": "Publicaciones",
+      "active": true,
+      "slug": "publicaciones"
+    }
+  },
+  {
+    "model": "configurations.history",
+    "pk": 1,
+    "fields": {
+      "history": "<p style='text-align: justify;'><span style='color: rgb(0, 0, 0);'>El Programa de Investigación en Tecnologías de Información y Comunicaciones (PROITIC), inició en 1992 en la Facultad de Electrotecnia y Computación (FEC) de la Universidad Nacional de Ingeniería (UNI), Nicaragua, auspiciado por la Agencia Sueca para el Desarrollo Internacional (Asdi). Los contrapartes en Suecia de este Programa fueron el Departamento de Sistemas de Información y Control Industrial, Departamento de Radiocomunicación  ambos del Real Instituto Tecnológico de Estocolmo(KTH) , Suecia, y el Departamento de Electrociencia  en el Instituto Tecnológico de Lund(LTH) , Suecia, que se integró a partir de 1999.</span></p><p style='text-align: justify;'><span style='color: rgb(0, 0, 0);'>El objetivo general del Programa es fortalecer la capacidad de investigación e innovación en la Universidad Nacional de Ingeniería en el área de Tecnologías de la Información y Comunicaciones (TIC) con un cercano vínculo con los actores nacionales, centroamericanos e internacionales, fortaleciendo de esta manera la relevancia y calidad de los resultados del proceso de investigación científica y su aplicación.</span></p><p style='text-align: justify;'><span style='color: rgb(0, 0, 0);'>El Programa condujo a los primeros profesores involucrados de parte de la FEC, UNI, a la obtención de grados académicos de Doctorado (PhD) o el Teknologie Licentiate. Este último es un grado académico en los países nórdicos  entre el MSc. y el Doctorado (PhD) conocido en algunos círculos como MPhil. Este  Programa se desarrolló a través de visitas a Suecia y a los países en donde se publican los resultados de investigación (conferencias, simposios científicos, etc.) con visitas de los colegas de investigación de Suecia a Nicaragua. Esto ha permitido que los investigadores nicaragüenses y suecos tengan una más cercana visión de la aplicación de los temas de investigación a la realidad y contexto nacional.</span></p><p style='text-align: justify; '><span style='color: rgb(0, 0, 0);'>Los miembros de este Programa han desarrollado vínculos activos con redes de investigación, sociedades académicas y profesionales  pudiendo compartir el conocimiento en las diferentes áreas TIC que se desarrollan, publicando internacionalmente  y con experiencia en servicios, consultorías y casos de estudios con empresas nacionales e internacionales en Nicaragua. Se cuenta con una infraestructura básica para el desarrollo de actividades de investigación, producción científica mediante publicación de resultados de investigación en revistas de prestigio internacional con arbitraje y la participación en congresos, seminarios y simposios nacionales e internacionales con arbitraje, así como la participación de investigadores del programa como miembros de comités de revisores para congresos nacionales e internacionales.</span></p>"
+    }
+  },
+  {
+    "model": "cooperation.cooperation",
+    "pk": 1,
+    "fields": {
+      "created_at": "2016-09-11 21:41:45.170000",
+      "description": "<p>Cómo parte de los vínculos del Programa de Investigación TIC se participan en diversas actividades que nos vinculan con la sociedad, tales como:</p><p><ul><li><span style='line-height: 1.4em; background-color: initial;'>La fundación y participación en la Asociación de Internet de Nicaragua, AIN, (Dr. Leonel Plazaola).</span><br></li><li><span style='line-height: 1.4em; background-color: initial;'>La participación con las entidades del Gobierno en la definición de las arquitecturas de interoperabilidad para el Gobierno Electrónico Central y Gobierno Electrónico Municipal, eGob y GobeNic (Dr. Leonel Plazaola).</span><br></li><li><span style='line-height: 1.4em; background-color: initial;'>Desarrollo de un proyecto de conexión nacional de todos los proveedores de Internet en Nicaragua, NicIX, que permite que el tráfico nacional de Internet sea local (Dr. Leonel Plazaola).</span><br></li><li><span style='line-height: 1.4em; background-color: initial;'>Desarrollo de un programa paralelo a la cooperación de la investigación destinado a fortalecer el uso y las aplicaciones de las Tecnologías de la Información en las 4 Universidades públicas de Nicaragua (representante Dr. Leonel Plazaola).</span><br></li><li><span style='line-height: 1.4em; background-color: initial;'>Desarrollo del taller nacional sobre el impacto de las antenas de telefonía celular con entidades del gobierno y de la empresa privada (TkL. Oscar Somarriba y Dr. Marvin Sánchez).</span><br></li></ul></p>"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "Alvaromero",
+      "first_name": "Alvaro",
+      "last_name": "Romero",
+      "is_active": true,
+      "is_superuser": true,
+      "is_staff": true,
+      "email": "alvaro.jrp.1994@gmail.com",
+      "date_joines": "2016-09-12 00:39:09.183000",
+      "password": "pbkdf2_sha256$24000$1LPh7x8Gx3AZ$6Eo+dUcmJ4wR0rhvavwBkfrszTrU52j86EDFemcdh84="
+    }
+  }
+]

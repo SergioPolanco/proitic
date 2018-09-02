@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li><a class="link-dark" href="#">Otros</a></li>
+      <li class="active">Testimonios </li>
+    </ol>
+  </div>
+</div>
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-12">
+                <ul class="nav nav-pills" role="tablist">
+                    <!--li class="active"><a href="#pill-1" role="tab" data-toggle="tab" title="Latest Arrivals"><i class="icon-star"></i> Listado de Testimonios</a></li>-->
+                    <h2 class="text-center">Listado de Categorías</a></h2>
+                </ul>
+                <div class="tab-content clear-style">
+                    <div class="tab-pane active" id="pill-1">
+                        {% for category in params %}
+                        <div class="col-md-3">
+          								<div style="width:100%;min-height:300px;" class="pv-30 ph-20 feature-box light-gray-bg bordered shadow text-center object-non-visible animated object-visible fadeInDownSmall" data-animation-effect="fadeInDownSmall" data-effect-delay="100">
+          									<span class="icon default-bg circle"><i class="fa fa-diamond"></i></span>
+                            <h3 class="title text-center">{{category.name}}</h3>
+          									<div class="separator clearfix"></div>
+          									<a href="/publicaciones/categorias/{{category.slug}}" class="text-center">Leer mas<i class="pl-5 fa fa-angle-double-right"></i></a>
+          								</div>
+          							</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

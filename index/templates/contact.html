@@ -1,0 +1,106 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div id="collapseMap" class="banner">
+  <!-- google map start -->
+  <!-- ================ -->
+  <div id="map-canvas"></div>
+  <!-- google maps end -->
+</div>
+<section class="main-container">
+
+  <div class="container">
+    <div class="row">
+
+      <!-- main start -->
+      <!-- ================ -->
+      <div class="main col-md-8">
+        <!-- page-title start -->
+        <!-- ================ -->
+        <h1 class="page-title">Contáctenos</h1>
+        <div class="separator-2"></div>
+        <!-- page-title end -->
+
+        <div class="alert alert-success hidden" id="MessageSent">
+          Hemos recibido tu mensaje, nos pondremos en contacto contigo muy pronto.
+        </div>
+        <div class="alert alert-danger hidden" id="MessageNotSent">
+          Ha ocurrido un error, refresca la pagina e intentalo de nuevo.
+        </div>
+        <div class="alert alert-danger hidden" id="EmptyFields">
+          Complete los campos vacios.
+        </div>
+        <div class="alert alert-danger hidden" id="ErrorBackends">
+
+        </div>
+        <div class="contact-form">
+          <form name="form-message" id="form-message" class="margin-clear" role="form">
+            {% csrf_token %}
+            <div class="form-group has-feedback" id="fgNombre">
+              <label for="name">Nombre*</label>
+              <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="">
+              <i class="fa fa-user form-control-feedback"></i>
+            </div>
+            <div class="form-group has-feedback" id="fgCorreo">
+              <label for="email">Correo*</label>
+              <input type="email" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="">
+              <i class="fa fa-envelope form-control-feedback"></i>
+            </div>
+            <div class="form-group has-feedback" id="fgMensaje">
+              <label for="message">Mensaje*</label>
+              <textarea class="form-control" rows="6" id="txtMensaje" name="txtMensaje" placeholder=""></textarea>
+              <i class="fa fa-pencil form-control-feedback"></i>
+            </div>
+            <input type="submit" id="btnEnviar" value="Enviar" class="submit-button btn btn-default">
+          </form>
+        </div>
+      </div>
+      <!-- main end -->
+
+      <!-- sidebar start -->
+      <!-- ================ -->
+      <aside class="col-md-4 col-lg-3 col-lg-offset-1">
+        <div class="sidebar">
+          <div class="block clearfix">
+            <h3 class="title">Encuéntranos</h3>
+            <div class="separator-2"></div>
+            <ul class="list">
+              <li><i class="fa fa-home pr-10"></i>Sede Central ubicada en la Avenida Universitaria</li>
+              <li><i class="fa fa-phone pr-10"></i>{{ configurations_list.telefono }}</li>
+              <li><i class="fa fa-envelope pr-10"></i><a href="#">{{ configurations_list.correo }}</a></li>
+            </ul>
+            <a class="btn btn-gray collapsed map-show btn-animated" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap">Mostrar Mapa <i class="fa fa-plus"></i></a>
+          </div>
+        </div>
+        <div class="sidebar">
+          <div class="block clearfix">
+            <h2 class="title">Síguenos</h2>
+            <div class="separator-2"></div>
+            <ul class="social-links circle small margin-clear clearfix animated-effect-1">
+              <li class="twitter"><a target="_blank" href="{{ configurations_list.twitter }}"><i class="fa fa-twitter"></i></a></li>
+              <li class="linkedin"><a target="_blank" href="{{ configurations_list.linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+              <li class="googleplus"><a target="_blank" href="{{ configurations_list.googlePlus }}"><i class="fa fa-google-plus"></i></a></li>
+              <li class="youtube"><a target="_blank" href="{{ configurations_list.youtube }}"><i class="fa fa-youtube-play"></i></a></li>
+              <li class="facebook"><a target="_blank" href="{{ configurations_list.facebook }}"><i class="fa fa-facebook"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <!-- sidebar end -->
+
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block script %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;signed_in=true"></script>
+<script type="text/javascript" src="{% static 'js/sarec/google.map.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/contact.js' %}"></script>
+{% endblock script %}

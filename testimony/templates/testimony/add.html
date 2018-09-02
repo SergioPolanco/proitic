@@ -1,0 +1,178 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+
+{% block title %}Testimonios | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block breadcrumbs %} Testimonios de Usuarios {% endblock breadcrumbs %}
+
+{% block titlepage %}Testimonios{% endblock titlepage %}
+{% block description %}Agregar Testimonio{% endblock description %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="clearfix">
+                <div class="pull-left alert alert-success no-margin">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="ace-icon fa fa-times"></i>
+                    </button>
+                    <i class="ace-icon fa fa-umbrella bigger-120 blue"></i>
+                    Haga clic en la imagen de abajo o en los campos de texto para cambiar los datos...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="hr dotted">
+            </div>
+            <form name="form-new-testimony" id="form-new-testimony" class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="tabbable">
+                    <ul class="nav nav-tabs padding-16">
+                        <li class="active">
+                            <a data-toggle="tab" href="#edit-basic">
+                                <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                Información
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content profile-edit-tab-content">
+                        <div id="edit-basic" class="tab-pane in active">
+                            <h4 class="header blue bolder smaller">General</h4>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4">
+                                  <div class="center-block">
+                                    <label class="ace-file-input ace-file-multiple">
+                                      <input name="avatar" type="file" accept="image/gif, image/jpeg, image/png, image/jpg">
+                                      <span class="profile-picture center-block" style="display:block!important;border: 0px solid #CCC;box-shadow: 0px 0px 0px rgba(0,0,0,.15);">
+                                        <img id="avatarimage" name="avatarimage" class="center-block editable img-responsive editable-click editable-empty" src="{% static 'img/image.png' %}" style="max-height:160px;"></img>
+                                      </span>
+                                    </label>
+                                    <div class="space-4"></div>
+                                  </div>
+                                </div>
+                                <div class="vspace-12-sm"></div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-username">Nombre Completo</label>
+                                        <div class="col-sm-8">
+                                            <input class="col-xs-12 col-sm-10 required" autocomplete="off" type="text" name="name" placeholder="Nombre" value="">
+                                        </div>
+                                    </div>
+                                    <div class="space-4"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-first">Profesión</label>
+                                        <div class="col-sm-8">
+                                            <input class="input required" autocomplete="off" name="profession" type="text" placeholder="Profesión" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label no-padding-right" for="form-field-email">Expresión</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="required" autocomplete="off" name="expression" value="" placeholder="Expressión">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <h4 class="header blue bolder smaller">Contacto</h4>
+                            <div class="form-group">
+                                <label for="txtFacebook" class="col-xs-3 control-label  no-padding-right">Email</label>
+                                <div class="col-xs-9">
+                                    <span class="input-icon">
+                                        <input type="email" name="email">
+                                        <i class="ace-icon fa fa-envelope purple"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFacebook" class="col-xs-3 control-label  no-padding-right">Facebook</label>
+                                <div class="col-xs-9">
+                                    <span class="input-icon">
+                                        <input type="text"  name="facebook">
+                                        <i class="ace-icon fa fa-facebook blue"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtTwitter" class="col-xs-3 control-label  no-padding-right">Twitter</label>
+                                <div class="col-xs-9">
+                                    <span class="input-icon">
+                                        <input type="text" name="twitter">
+                                        <i class="ace-icon fa fa-twitter light-blue"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtGooglePlus" class="col-xs-3 control-label  no-padding-right">Google +</label>
+                                <div class="col-xs-9">
+                                    <span class="input-icon">
+                                        <input type="text" name="googleplus">
+                                        <i class="ace-icon fa fa-google-plus red"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h4 class="header blue bolder smaller">Estado</h4>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right no-padding-top">Activo</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div>
+                                        <label>
+                                            <input name="active" checked type="checkbox" class="ace">
+                                            <span class="lbl"> Si</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right no-padding-top">Mostrar Datos Pers.</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div>
+                                        <label>
+                                            <input name="viewcontact" type="checkbox" class="ace">
+                                            <span class="lbl"> Si</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <h4 class="header blue bolder smaller">Testimonio</h4>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-xs-12">
+                                    <textarea class="form-control required" name="testimony" placeholder="Testimonio!!!!" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="space-4"></div>
+                <div class="clearfix" id="message">
+                </div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <i class="ace-icon fa fa-spinner fa-spin orange bigger-225 text-center hide load"></i>
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Guardar
+                        </button>
+                        &nbsp; &nbsp;
+                        <button class="btn" type="reset" name="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            Reiniciar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/createtestimony.js' %}"></script>
+{% endblock script %}

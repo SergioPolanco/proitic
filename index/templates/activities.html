@@ -1,0 +1,133 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="breadcrumb-container breadcrumb-color">
+  <div class="container ">
+    <ol class="breadcrumb">
+      <li><i class="fa fa-home pr-10"></i><a class="link-dark" href="{% url 'index.index' %}">Inicio</a></li>
+      <li><a class="link-dark" href="#">Otros</a></li>
+      <li class="active">Cooperación / Vinculación </li>
+    </ol>
+  </div>
+</div>
+<div id="collapseMap" class="banner">
+  <!-- google map start -->
+  <!-- ================ -->
+  <div id="map-canvas"></div>
+  <!-- google maps end -->
+</div>
+<section class="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="main col-md-8">
+                <h1 class="page-title text-center">Cooperación / Vinculación</h1>
+                <div class="separator-2"></div>
+                <div class="article-PROITIC">
+                    {{ params.cooperation_list.description | safe }}
+                </div>
+            </div>
+            <aside class="col-md-4 col-lg-3 col-lg-offset-1">
+                <div class="sidebar">
+                  <div class="block clearfix">
+                    <h3 class="title">Encuéntranos</h3>
+                    <div class="separator-2"></div>
+                    <ul class="list">
+                      <li><i class="fa fa-home pr-10"></i>Sede Central ubicada en la Avenida Universitaria</li>
+                      <li><i class="fa fa-phone pr-10"></i>{{ configurations_list.telefono }}</li>
+                      <li><i class="fa fa-envelope pr-10"></i><a href="#">{{ configurations_list.correo }}</a></li>
+                    </ul>
+                    <a class="btn btn-gray collapsed map-show btn-animated" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap">Mostrar Mapa <i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+                <div class="sidebar">
+                  <div class="block clearfix">
+                    <h2 class="title">Síguenos</h2>
+                    <div class="separator-2"></div>
+                    <ul class="social-links circle small margin-clear clearfix animated-effect-1">
+                      <li class="twitter"><a target="_blank" href="{{ configurations_list.twitter }}"><i class="fa fa-twitter"></i></a></li>
+                      <li class="linkedin"><a target="_blank" href="{{ configurations_list.linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                      <li class="googleplus"><a target="_blank" href="{{ configurations_list.googlePlus }}"><i class="fa fa-google-plus"></i></a></li>
+                      <li class="youtube"><a target="_blank" href="{{ configurations_list.youtube }}"><i class="fa fa-youtube-play"></i></a></li>
+                      <li class="facebook"><a target="_blank" href="{{ configurations_list.facebook }}"><i class="fa fa-facebook"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <div class="dark-bg  default-hovered footer-top animated-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="call-to-action text-center">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h2>NUESTRO PERSONAL</h2>
+                                <h2>Conócenos</h2>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="mt-10"><a href="#" class="btn btn-animated btn-lg btn-gray-transparent ">Leer Mas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right pl-20"></i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="row margin-top-40">
+        <div class="main col-xs-12 text-center">
+          <ul class="nav nav-pills margin-bottom-40" role="tablist">
+            {% for category in params.category_list %}
+              {% if forloop.first %}
+                <li class="active"><a href="#pill-{{category.id}}" role="tab" data-toggle="tab" title=""><i class="fa fa-exchange"></i> {{category.name}}</a></li>
+              {% else %}
+                <li><a href="#pill-{{category.id}}" role="tab" data-toggle="tab" title=""><i class="fa fa-exchange"></i> {{category.name}}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <div class="tab-content clear-style">
+            {% for category in params.category_list %}
+              {% if forloop.first %}
+                <div class="tab-pane active" id="pill-{{category.id}}">
+                  {% for article in params.article %}
+                    {% if article.categorys_id == category.id %}
+                      <div class="PROITIC-PROJECT margin-top-20">
+                          <h5 class="text-center">{{ article.title }}</h5>
+                          <div class="separator-2"></div>
+                          {{ article.body | safe }} <span><a href="/publicaciones/categorias/{{article.categorys.slug}}/{{article.slug}}/">Leer mas...</a></span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div class="tab-pane" id="pill-{{category.id}}">
+                  {% for article in params.article %}
+                    {% if article.categorys_id == category.id %}
+                      <div class="PROITIC-PROJECT margin-top-20">
+                          <h5 class="text-center">{{ article.title }}</h5>
+                          <div class="separator-2"></div>
+                          {{ article.body | safe | truncatechars:850 }} <span><a href="/publicaciones/categorias/{{article.categorys.slug}}/{{article.slug}}/">Leer mas...</a></span>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block script %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSEDywziy5OfN1aKb91LYMcT4LP8BH6c8&signed_in=true&callback=initMap"async defer></script>
+<script type="text/javascript" src="{% static 'js/sarec/contact.js' %}"></script>
+{% endblock script %}

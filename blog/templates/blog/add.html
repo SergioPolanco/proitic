@@ -1,0 +1,223 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+
+{% block title %}Publicaciones | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+  <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/chosen.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/template.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/demo.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sarec/component.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %} Publicaciones {% endblock breadcrumbs %}
+
+{% block titlepage %}Publicaciones{% endblock titlepage %}
+{% block description %}Agregar Publicaciones{% endblock description %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+
+          <form name="form-upload">
+            <div class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+              <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">UPLOAD FORM</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="content">
+                      <div class="box">
+                        <input type="file" name="file-7" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" />
+                        <label for="file-7"><span id="result"></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Choose a file&hellip;</strong></label>
+                        <input type="text" id="url" name="url" class="form-control" value="" style="display:none;">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="btn-close" class="btn btn-default" data-dismiss="modal">Atras</button>
+                    <button type="submit" class="btn btn-purple">Subir</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          </form>
+
+            <form name="form-new-blog" id="form-new-blog" class="form-horizontal" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="tabbable">
+                    <ul class="nav nav-tabs padding-16">
+                        <li class="active">
+                            <a data-toggle="tab" href="#edit-basic">
+                                <i class="green ace-icon fa fa-pencil-square-o bigger-125"></i>
+                                Información
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content profile-edit-tab-content">
+                        <div id="edit-basic" class="tab-pane in active">
+                            <h4 class="header blue bolder smaller">General</h4>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="title">Titulo del Artículo:</label>
+                                      <div class="col-sm-7">
+                                          <input class="col-xs-12 col-sm-10 validate" autocomplete="off" type="text" id="title" name="title" placeholder="Titulo del Articulo" value="">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="title">Lugar:</label>
+                                      <div class="col-sm-7">
+                                          <input class="col-xs-12 col-sm-10 validate" autocomplete="off" type="text" id="city" name="city" placeholder="Sitio de la publicación" value="">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="title">Año:</label>
+                                      <div class="col-sm-7">
+                                          <input class="col-xs-12 col-sm-4 validate" autocomplete="off" type="text" id="year" name="year" placeholder="Año de publicación" value="">
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label no-padding-right" for="form-field-first">Categoría:</label>
+                                      <div class="col-sm-6">
+                                          <select name="category" data-placeholder="Elija una categoría..." class="col-xs-12 chosen-select">
+                                              <option></option>
+                                              {% for subcategory in subcategory_list %}
+                                                <option value='{{ subcategory.id }}'>{{ subcategory.name }}</option>
+                                              {% endfor %}
+                                          </select>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <h4 class="header blue bolder smaller">Estado</h4>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right no-padding-top">Activo</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div>
+                                        <label>
+                                            <input name="active" checked type="checkbox" class="ace">
+                                            <span class="lbl"> Si</span>
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <label class="control-label col-xs-12 col-sm-3 no-padding-right no-padding-top">Agregar blog</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <div>
+                                        <label>
+                                            <input name="blog_active" id="blog_active" type="checkbox" class="ace">
+                                            <span class="lbl"> Si</span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="header blue bolder smaller">Etiquetas (tags)</h4>
+
+                            <div class="space-4"></div>
+                            <div class="clearfix">
+                                <div class="pull-left alert alert-success">
+                                    <i class="ace-icon fa fa-tags bigger-120 blue"></i>
+                                    Agregue palabras claves relacionadas al Artículo, separadas presionando la tecla "Enter"...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-xs-12">
+                                    <input placeholder="Ingrese las palabras claves ..." class="form-control required" name="tags" id="form-field-tags">
+                                </div>
+                            </div>
+                            <!--<div class="space-4"></div>
+                            <div class="clearfix">
+                                <div class="pull-left alert alert-success">
+                                    <i class="ace-icon fa fa-tags bigger-120 blue"></i>
+                                    Agregue palabras los autores del Artículo, separadas presionando la tecla "Enter"...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-xs-12">
+                                    <input placeholder="Ingrese los autores ..." class="form-control required" name="authors" id="form-field-authors">
+                                </div>
+                            </div>-->
+                            <div class="form-group hide">
+                                <div class="col-sm-9 col-xs-12">
+                                    <input type="text" name="content" >
+                                </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-12">
+                                <input type="hidden" name="user" value="{{ user.id }}" >
+                            </div>
+                            <div class="space-4"></div>
+                            <h4 class="header blue bolder smaller">Contenido del Articulo</h4>
+                            <button type="button" class="btn btn-purple btn-sm pull-right" data-toggle="modal" data-target=".bs-example-modal-md">
+      												<i class="ace-icon fa fa-cloud-upload bigger-200"></i>
+      												SUBIR
+      											</button>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <textarea name="description" id="trumbowyg-demo"></textarea>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="row" id="div_blog_content" style="display: none">
+                                <div class="col-xs-12">
+                                    <h4 class="header blue bolder smaller">Contenido del Blog</h4>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <textarea name="description_blog" id="trumbowyg-demo2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="space-4"></div>
+                <div class="clearfix" id="message">
+                </div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <i class="ace-icon fa fa-spinner fa-spin orange bigger-225 text-center hide load"></i>
+                        <button class="btn btn-info" name="btn-save" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Guardar
+                        </button>
+                        &nbsp; &nbsp;
+                        <button class="btn" type="reset" name="reset">
+                            <i class="ace-icon fa fa-undo bigger-110"></i>
+                            Reiniciar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="hide" id="dialog-message"><textarea name="name" rows="8" cols="40"></textarea></div>
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+    <script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+    <script src="{% static 'js/sarec/highlight.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/es.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/chosen.jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/bootstrap-tag.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/custom-file-input.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/ajax403.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/blog.js' %}"></script>
+{% endblock script %}

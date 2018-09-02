@@ -1,0 +1,69 @@
+.no-border-radius {
+  border-radius: 0!important;
+}
+.blue {
+  background-color: #003782!important;
+}
+.header-top {
+  color: #fff!important;
+}
+.social-links li a {
+  background-color: #002E6C;
+  border: 1px solid #002E6C;
+  color: #fff;
+}
+.btn-default {
+  color: #fff;
+  background-color: #002E6C;
+  border-color: #002E6C;
+}
+.btn-default:hover, .btn-default:active, .btn-default:visited, .btn-default:focus {
+  color: #fff;
+  background-color: #002E6C;
+  border-color: #002E6C;
+}
+.text-white {
+  color: #fff!important;
+}
+.text-blue {
+  color: #003782!important;
+}
+
+.table-colored > thead > tr > th {
+  border-color: #003782!important;
+  background-color:#003782!important;
+  color: #fff;
+}
+
+.table.table-colored {
+    border-bottom-color: #003782!important;
+}
+
+.collapse-style-2 .panel-heading a {
+    color: #ffffff;
+    background-color: #003782!important;
+}
+
+.icon.default-bg {
+    background-color: #003782!important;
+    color: #ffffff;
+}
+.breadcrumb-color{
+  background-color:#EAECEE!important;
+
+}
+
+.container-header{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+
+/*Paginator*/
+
+.page{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}

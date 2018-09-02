@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Inicia Sesión | Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/sarec/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/ace.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome-4.6.1/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/sarec.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/animate.css' %}">
+{% endblock header %}
+
+{% block body-attrib %}class="gray"{% endblock body-attrib %}
+
+{% block content %}
+    <div class="container-login animated fadeInDown">
+        <div class="">
+            <div class="login-head margin-bottom-15">
+              <h1 class="app-name text-center">PROITIC</h1>
+            </div>
+            <h3 class="text-center app-welcome">Bienvenido a PROITIC</h3>
+            <p class="text-center no-margin-bottom">
+                Web del programa de investigación en TIC
+            </p>
+            <p class="text-center no-margin-bottom">
+                Dirección de Investigación
+            </p>
+            <p class="text-center no-margin-bottom">
+                Universidad Nacional de Ingeniería
+            </p>
+        </div>
+        <div class="container-fluid">
+            <form name="form-access" method="post" action="">
+                {% csrf_token %}
+                <div class="form-group margin-top-30">
+                    <input autocomplete="off" type="text" name="username" value="{{ username }}" placeholder="Nombre de Usuario" class="padding-left-10 form-control no-border-radius notnull">
+                </div>
+                <div class="form-group margin-top-5">
+                    <input autocomplete="off" type="password" name="password" value="" placeholder="Contraseña" class="padding-left-10 form-control no-border-radius notnull">
+                </div>
+                <div class="form-group margin-top-5" id="message">
+                    {% if mensaje %}
+                        <div id="alert" class="alert alert-danger no-margin-bottom no-border-radius">
+                            <button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button>
+                            <strong>Error!</strong> {{ mensaje }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group margin-top-5">
+                    <input type="submit" name="btn-login" value="Acceder" class="btn btn-block btn-turquoise no-border-radius">
+                </div>
+                <div class="form-group margin-top-5">
+                    <li class="chk-container">
+                        <input class="chk-arp text-turquoise no-border-radius" name="remember" type="checkbox"><span class="lbl-chk-arp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recuérdame</span>
+                        <a class="pull-right clickable" name="help">Olvidastes tu contraseña?</a>
+                    </li>
+                </div>
+                <p class="text-center no-margin-bottom">
+                  Aplicaciones UNI
+                </p>
+                <p class="text-center no-margin-bottom">
+                  © 2016
+                </p>
+                <div class="form-group margin-top-5">
+                    <ul class="bokeh hide">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="dialog" class="hide">
+      <h5 class="center"><b>¿Has olvidado la contraseña?</b></h3>
+        <p class="text-justify">
+          Contáctenos, llama al número (505) 9999-9999, o escríbenos al correo correo@uni.edu.ni y con gusto te atenderemos.
+        </p>
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'js/jquery-2.2.3/jquery-2.2.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-3.3.6/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery-ui.custom.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.ui.touch-punch.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/main.js' %}"></script>
+{% endblock script %}

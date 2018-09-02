@@ -1,0 +1,64 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+{% block title %}Lineas de Investigación| Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %}Agregar Lineas de Investigación {% endblock breadcrumbs %}
+
+{% block titlepage %}Agregar Linea de Investigación{% endblock titlepage %}
+
+{% block description %}Agregar{% endblock description %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <form class="form-horizontal" id="form-nueva-linea" name="form-nueva-linea" method="post">
+      {% csrf_token %}
+      <div class="form-group" id="fgTitulo">
+        <label for="txtTitulo" class="col-xs-3 control-label  no-padding-right">Titulo:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtTitulo" name="txtTitulo" class="col-xs-10 col-sm-5 requerid" placeholder="Titulo">
+        </div>
+      </div>
+
+      <div class="form-group" id="fgDescripcion">
+        <label for="txtDescripcion" class="col-xs-3 control-label  no-padding-right">Descripción:</label>
+        <div class="col-xs-9">
+          <textarea id="txtDescripcion" name="txtDescripcion" rows="20" class="col-xs-8"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="clearfix form-actions">
+          <div class="col-xs-offset-3 col-md-9">
+            <button type="submit" class="btn btn-success" id="btnGuardar">
+              <i class="ace-icon fa fa-check bigger-110"></i>
+              Guardar
+            </button>
+
+            <button type="reset" class="btn" id="btnReiniciar">
+              <i class="ace-icon fa fa-undo bigger-110"></i>
+              Reiniciar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/addLine.js' %}"></script>
+{% endblock script %}

@@ -1,0 +1,144 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+{% block title %}Lineas de Investigación| Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %}Modificar Linea de Investigación {% endblock breadcrumbs %}
+
+{% block titlepage %}Modificar Linea de Investigación{% endblock titlepage %}
+
+{% block description %}Modificar{% endblock description %}
+
+{% block content %}
+<div class="row" id="div-Form" style="display:none">
+  <div class="col-sm-12">
+    <form class="form-horizontal" id="form-modificar-linea" name="form-modificar-linea" method="post">
+      {% csrf_token %}
+      <input type="text" id="idFormLine" name="idFormLine" class="hidden">
+      <div class="form-group" id="fgTitulo">
+        <label for="txtTitulo" class="col-xs-3 control-label  no-padding-right">Titulo:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtTitulo" name="txtTitulo" class="col-xs-10 col-sm-5 requerid" placeholder="Titulo">
+        </div>
+      </div>
+
+      <div class="form-group" id="fgDescripcion">
+        <label for="txtDescripcion" class="col-xs-3 control-label  no-padding-right">Descripción:</label>
+        <div class="col-xs-9">
+          <textarea id="txtDescripcion" name="txtDescripcion" rows="20" class="col-xs-8"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="clearfix form-actions">
+          <div class="col-xs-offset-3 col-md-9">
+            <button type="submit" class="btn btn-success" id="btnGuardar">
+              <i class="ace-icon fa fa-check bigger-110"></i>
+              Guardar
+            </button>
+
+            <button type="button" class="btn" id="btnCancelar">
+              <i class="ace-icon fa fa-times bigger-110"></i>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row form-search">
+  <form name="form-id-line" class="hidden" method="post">
+    {% csrf_token %}
+    <input type="text" name="idLine" id="idLine">
+  </form>
+  <div class="col-xs-12">
+    <div class="table-header">
+      Resultados para "Lineas de Investigación"
+    </div>
+    <div>
+      <div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+        <table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="sample-table-2_info">
+          <thead>
+            <tr role="row">
+              <th class="sorting hide" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Id</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Título</th>
+              <th class="sorting" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="Domain: activate to sort column ascending">Descripción</th>
+
+              <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for line in line_list %}
+            <tr role="row" class="odd" name="{{ investigator.id }}">
+
+              <td class="hide">
+                {{ line.id }}
+              </td>
+              <td>
+                {{ line.titulo }}
+              </td>
+              <td>
+                {{ line.descripcion |safe }}
+              </td>
+              <td>
+                <div class="hidden-sm hidden-xs action-buttons">
+                  <a class="blue" href="#">
+                    <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                  </a>
+                  <a class="green" href="#">
+                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                  </a>
+                </div>
+                <div class="hidden-md hidden-lg">
+                  <div class="inline position-relative">
+                    <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                      <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                      <li>
+                        <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+                          <span class="blue">
+                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                        </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+                          <span class="green">
+                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                        </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.dataTables.bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/modifyLine.js' %}"></script>
+{% endblock script %}

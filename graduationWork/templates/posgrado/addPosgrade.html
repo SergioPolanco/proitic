@@ -1,0 +1,116 @@
+{% extends 'config.html' %}
+{% load staticfiles %}
+{% block title %}Trabajos de Graduación| Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/sarec/formvalidator.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/trumbowyg.colors.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/chosen.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/template.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/demo.css' %}">
+<link rel="stylesheet" href="{% static 'css/sarec/component.css' %}">
+{% endblock header %}
+
+{% block breadcrumbs %}Agregar Trabajo de PosGrado {% endblock breadcrumbs %}
+
+{% block titlepage %}Agregar Trabajo de PosGrado{% endblock titlepage %}
+
+{% block description %}Agregar{% endblock description %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <form class="form-horizontal" id="form-nuevo-posgrado" name="form-nuevo-posgrado" method="post">
+      {% csrf_token %}
+      <div class="form-group" id="fgTitulo">
+        <label for="txtEstudiantes" class="col-xs-3 control-label  no-padding-right">Estudiantes:</label>
+        <div class="col-xs-9">
+          <input type="text" id="txtEstudiantes" name="txtEstudiantes" class="input-large" placeholder="Estudiantes">
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-3 control-label no-padding-right" for="form-field-first">Tutor:</label>
+          <div class="col-xs-3">
+              <select data-placeholder="Elija un tutor..." class="col-xs-12 chosen-select">
+                  <option></option>
+                  {% for investigator in investigator_list %}
+                    <option value='{{ investigator.id }}'>{{ investigator.nombres }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+      </div>
+
+      <div class="form-group" id="fgTitulo">
+        <label for="txtTutor" class="col-xs-3 control-label  no-padding-right">Título:</label>
+        <div class="col-xs-9">
+            <input type="text" id="txtTitulo" name="txtTitulo" class="input-large" placeholder="Titulo">
+
+        </div>
+      </div>
+
+      <div class="form-group" id="fgFechaNac">
+        <label for="txtFechaNac" class="col-xs-3 control-label  no-padding-right">Fecha de Defensa:</label>
+        <div class="col-xs-9">
+          <div class="input-medium">
+            <div class="input-group">
+              <input type="text" id="txtFecha" name = "txtFecha" class="input-medium date-picker requerid" date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+              <span class="input-group-addon">
+                <i class="ace-icon fa fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="fgDescripcion">
+        <label for="txtDescripcion" class="col-xs-3 control-label  no-padding-right">Archivo:</label>
+        <div class="col-xs-5">
+          <input type="file" name="file" id="file_posgrade" class="form-control inputfile inputfile-6" value="">
+          <label for="file_posgrade"><span id="result_file_posgrade"></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Subir Archivo&hellip;</strong></label>
+
+        </div>
+      </div>
+        <h4 class="header blue bolder smaller">Descripción</h4>
+      <div class="row">
+          <div class="col-xs-12">
+              <textarea name="history" id="trumbowyg-demo"></textarea>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <div class="clearfix form-actions">
+          <div class="col-xs-offset-3 col-md-9">
+            <button type="submit" class="btn btn-success" id="btnGuardar">
+              <i class="ace-icon fa fa-check bigger-110"></i>
+              Guardar
+            </button>
+
+            <button type="reset" class="btn" id="btnReiniciar">
+              <i class="ace-icon fa fa-undo bigger-110"></i>
+              Reiniciar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'js/sarec/trumbowyg.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.base64.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.colors.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.noembed.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.pasteimage.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.preformatted.min.js' %}"></script>
+<script src="{% static 'js/sarec/trumbowyg.upload.min.js' %}"></script>
+<script src="{% static 'js/sarec/highlight.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/formvalidator.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/chosen.jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/addPosGrade.js' %}"></script>
+{% endblock script %}

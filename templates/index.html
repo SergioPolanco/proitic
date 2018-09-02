@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Dirección de Investigación | Universidad Nacional de Ingeniería{% endblock title %}</title>
+    <meta name="description" content="Programa UNI/ASDI es un programa que promueve la investigación cientifica en líneas de interés propuestas por la Universidad Nacional de Ingenieria">
+    <!--Desarrolladores-->
+		<meta name="author" content="Alvaro Javier Romero Parrales - alvaro.jrp.1994@gmail.com, Sergio Israel Polanco Pao - polancosergio8@gmail.com">
+    <!--Metas Tags-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block keywords %}
+    {% endblock keywords %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontello/css/fontello.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/rs-plugin/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/owl-carousel/owl.transitions.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/hover/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/skins/light_blue.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/master.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/master2.css' %}">
+    {% block header %}
+    {% endblock header %}
+  </head>
+  <body>
+    <div class="scrollToTop circle"><!--Boton que lleva al inicio del documento--->
+      <i class="icon-up-open-big"></i>
+    </div>
+
+    <div class="page-wrapper">
+      <div class="header-container"><!--Contenedor del encabezado-->
+        <div class="header-top blue "><!--Contenedor de informacion del sujeto-->
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-3 col-sm-6 col-md-9"><!--Redes Sociales del sujeto-->
+                <div class="header-top-first clearfix">
+                  <ul class="social-links circle small clearfix hidden-xs">
+                    <li class="twitter"><a target="_blank" href="/"><i class="fa fa-twitter"></i></a></li>
+                    <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                    <li class="linkedin"><a target="_blank" href="/"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="googleplus"><a target="_blank" href="{/"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="youtube"><a target="_blank" href="/"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
+                    <li class="facebook"><a target="_blank" href="/"><i class="fa fa-facebook"></i></a></li>
+                  </ul>
+                  <div class="social-links hidden-lg hidden-md hidden-sm circle small">
+                    <div class="btn-group dropdown">
+                      <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-share-alt"></i></button>
+                      <ul class="dropdown-menu dropdown-animation">
+                        <li class="twitter"><a target="_blank" href="/"><i class="fa fa-twitter"></i></a></li>
+                        <li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+                        <li class="linkedin"><a target="_blank" href="/"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="googleplus"><a target="_blank" href="/"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="youtube"><a target="_blank" href="/"><i class="fa fa-youtube-play"></i></a></li>
+                        <li class="flickr"><a target="_blank" href="http://www.flickr.com"><i class="fa fa-flickr"></i></a></li>
+                        <li class="facebook"><a target="_blank" href="/"><i class="fa fa-facebook"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <ul class="list-inline hidden-sm hidden-xs"><!--Datos del sujeto-->
+                    <li><i class="fa fa-map-marker pr-5 pl-10"></i>{{ about.adress | default:'' }}</li>
+                    <li><i class="fa fa-phone pr-5 pl-10"></i>{{ about.phone | default:'' }}</li>
+                    <li><i class="fa fa-envelope-o pr-5 pl-10"></i>&nbsp;{{ about.email | default:'' }}</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <header class="header fixed clearfix"><!--Menu con propiedad pegajosa-->
+          <div class="container container-header">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="header-left clearfix">
+                  <div id="logo" class="logo"><!--Logo del sujeto-->
+                    <a href="{% url 'index.index' %}"><img id="logo_img" src="{% static 'img/logo.png' %}" alt="Universidad Nacional de Ingenieria"></a>
+                  </div>
+                  <div class="site-slogan text-center"><!--Nombre del Logo-->
+                    Universidad Nacional de Ingeniería
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="header-right clearfix">
+                  <div class="main-navigation  animated with-dropdown-buttons">
+                    <nav class="navbar navbar-default" role="navigation">
+                      <div class="container-fluid">
+                        <div class="navbar-header"><!--Boton de tipo hamburguesa-->
+                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                          <!-- main-menu -->
+                          <ul class="nav navbar-nav ">
+                            <li class="dropdown  mega-menu">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Publicaciones</a>
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <div class="row">
+                                    <div class="col-lg-8 col-md-9">
+                                      <h4 class="title">CATEGORÍAS</h4>
+                                      <div class="row">
+                                        <div class="col-xs-12">
+                                          <div class="divider"></div>
+                                          <ul class="menu">
+                                            {% for publication in publication_list %}
+                                              <li><a href="/publicaciones/categorias/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.name|truncatechars:42 }}</a></li>
+                                            {% endfor %}
+                                            <li class="active"><a href="/publicaciones/categorias"><i class="fa fa-angle-right"></i>Otras categorías...</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 hidden-sm">
+                                      <h4 class="title">¿Encontrastes lo que buscas?</h4>
+                                      <p class="mb-10 text-justify">Accede a la sección prinicipal de articulos, ahí encontrarás el resto del contenido.&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i><a href="/publicaciones/categorias">&nbsp;&nbsp;Ir</a></p>
+                                      <img src="{% static 'img/section-image-3.png' %}" alt="The Project">
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="dropdown ">
+                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personal</a>
+                              <ul class="dropdown-menu">
+                                {% for investigator in investigator_list %}
+                                <li ><a href="{% url 'perfiles.index' investigator.slug %}" id="{{ investigator.id }}">{{ investigator.nombres }} {{ investigator.apellidos }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </li>
+                            <li class="dropdown ">
+                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">L. de Investigación</a>
+                              <ul class="dropdown-menu">
+                                {% for investigationLine in investigationLines_list %}
+                                <li ><a href="{% url 'line.detail' investigationLine.slug %}" id="{{ investigationLine.id }}">{{ investigationLine.titulo }}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </li>
+                            <li class="dropdown ">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posgrado</a>
+                                <ul class="dropdown-menu">
+                                  {% for postgraduate in postgraduate_list %}
+                                    <li ><a href="/publicaciones/categorias/{{ postgraduate.slug }}">{{ postgraduate.name }}</a></li>
+                                  {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="dropdown ">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Otros</a>
+                                <ul class="dropdown-menu">
+                                    <li ><a href="{% url 'historia' %}">Historia</a></li>
+                                    <li ><a href="{% url 'contact.index' %}">Contacto</a></li>
+                                    <li ><a href="{% url 'projects.index' %}">Cooperación / Vinculación</a></li>
+                                    {% if params.testimonys_list|length > 0 %}
+                                      <li ><a href="{% url 'testimony.index' %}">Testimonios</a></li>
+                                    {% endif %}
+                                    <li ><a href="{% url 'blogs.index' %}">Blogs</a></li>
+                                </ul>
+                            </li>
+                          </ul>
+                          <!--Seccion de Busqueda-->
+                          <div class="header-dropdown-buttons hidden-xs">
+                            <div class="btn-group dropdown">
+                              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></button>
+                              <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+                                <li>
+                                  <form role="search" class="search-box margin-clear">
+                                    <div class="form-group has-feedback">
+                                      <input type="text" class="form-control no-border-radius" placeholder="Buscar...">
+                                      <i class="icon-search form-control-feedback"></i>
+                                    </div>
+                                  </form>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </div>
+    {% block content %}
+
+    {% endblock content %}
+    <footer id="footer" class="clearfix dark">
+      <div class="footer blue header-top">
+        <div class="container">
+          <div class="footer-inner">
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="footer-content text-center padding-ver-clear">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul class="list-inline mb-20">
+                        <li><i class="text-default fa fa-map-marker pr-5"></i>Sede Central ubicada en la Avenida Universitaria</li>
+                        <li><a href="tel:+00 1234567890" class="link-dark text-white"><i class="text-default fa fa-phone pl-10 pr-5"></i>{{ about.phone }}</a></li>
+                        <li><a href="mailto:{{ about.correo }}" class="link-dark text-white"><i class="text-default fa fa-envelope-o pl-10 pr-5"></i>{{ about.email }}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul class="social-links circle animated-effect-1 margin-clear">
+                        <li class="facebook"><a target="_blank" href="/"><i class="fa fa-facebook"></i></a></li>
+                        <li class="twitter"><a target="_blank" href="/"><i class="fa fa-twitter"></i></a></li>
+                        <li class="googleplus"><a target="_blank" href="/"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="linkedin"><a target="_blank" href="/"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="separator"></div>
+                  <p class="text-center margin-clear">Copyright © 2016 Universidad Nacional de Ingeniería <a target="_blank" href="http://www.uni.edu.ni/">(UNI)</a>. Todos los Derechos Reservados</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="{% static 'plugins/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/bootstrap-3.3.6/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/modernizr.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/waypoints/jquery.waypoints.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.countTo.js' %}"></script>
+		<script src="{% static 'plugins/jquery.parallax-1.1.3.js' %}"></script>
+		<script src="{% static 'plugins/jquery.validate.js' %}"></script>
+		<script src="{% static 'plugins/vide/jquery.vide.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.browser.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/SmoothScroll.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/sarec/template.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/sarec/custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sarec/jquery.bootpag.min.js' %}"></script>
+
+    {% block script %}
+    {% endblock script %}
+  </body>
+</html>
