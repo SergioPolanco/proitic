@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'proitic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sarec',
+        'NAME': 'proitic',
         'USER': 'admin',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

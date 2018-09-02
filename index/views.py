@@ -11,7 +11,7 @@ from blog import models as blog_model
 import smtplib
 from django.views.generic import TemplateView
 import email.mime.multipart
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 import json, traceback
 from django.http import HttpResponse
 from django.db.models import Max, Min

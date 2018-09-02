@@ -24,8 +24,8 @@ class Article(models.Model):
     active = models.BooleanField(default = 1)
     body = models.TextField()
     authors = models.TextField(default='', null=True)
-    owner = models.ForeignKey(investigator.Investigator, related_name="article_owner")
-    categorys = models.ForeignKey('Subcategory')
+    owner = models.ForeignKey(investigator.Investigator, related_name="article_owner", on_delete=models.CASCADE)
+    categorys = models.ForeignKey('Subcategory', on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, related_name="article_tags")
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -58,7 +58,7 @@ class Subcategory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.CharField(max_length=255, unique=True, null=True)
     active = models.BooleanField(default = 1)
-    category = models.ForeignKey(Category, related_name="category_relation")
+    category = models.ForeignKey(Category, related_name="category_relation", on_delete=models.CASCADE)
     name = models.CharField(max_length=200, unique=True)
 
     def save(self, *args, **kwargs):
@@ -67,4 +67,4 @@ class Subcategory(models.Model):
 
 class BlogArticle(models.Model):
     body = models.TextField()
-    article = models.ForeignKey("Article")
+    article = models.ForeignKey("Article", on_delete=models.CASCADE)
