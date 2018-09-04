@@ -144,7 +144,7 @@
                               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personal</a>
                               <ul class="dropdown-menu">
                                 {% for investigator in investigator_list %}
-                                <li ><a href="{% url 'perfiles.index' investigator.slug %}" id="{{ investigator.id }}">{{ investigator.names }} {{ investigator.surnames }}</a></li>
+                                <li ><a href="/investigador/{{investigator.slug }}" id="{{ investigator.id }}">{{ investigator.names }} {{ investigator.surnames }}</a></li>
                                 {% endfor %}
                               </ul>
                             </li>

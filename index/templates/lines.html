@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div class="main-container padding-bottom-clear" style="padding-top:20px;">
+<div class="main-container padding-bottom-clear" style="padding-top:0px;">
   <section class="section default-bg clearfix blue">
     <div class="container">
       <div class="row">
@@ -47,7 +47,7 @@
 
                     </header>
                     <div class="blogpost-content">
-                      {{line.descripcion|truncatechars:500}}
+                      {{line.descripcion|truncatechars:500|safe}}
                     </div>
                   </article>
                 </div>
@@ -59,7 +59,7 @@
                       <h2 class="text-center"><a href="{% url 'line.detail' line.slug %}">{{line.titulo}}</a></h2>
                     </header>
                     <div class="blogpost-content">
-                      {{line.descripcion|truncatechars:500}}
+                      {{line.descripcion|truncatechars:500|safe}}
                     </div>
                   </article>
                   <!-- blogpost end -->

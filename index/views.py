@@ -25,9 +25,10 @@ class Historia(View):
         return render(request, 'historia.html', context)
 
 class Investigador(View):
-    def get(self, request):
+    def get(self, request, investigator):
+        print(investigator)
         context = ObtenerContexto(None)
-        idInvestigator = kwargs['investigator']
+        idInvestigator = investigator
         investigator_info = investigator_model.Investigator.objects.get(slug=idInvestigator)
         blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
         blog_list_paginator = blog_model.Article.objects.filter(owner = investigator_info, active = True).order_by('-id')[:20]
@@ -81,6 +82,7 @@ def index_view(request):
         'cooperation_list': cooperation_list
     }
     context = ObtenerContexto(context)
+    
     return render(request, 'index1.html', context)
 
 def contact_view(request):
@@ -215,6 +217,8 @@ def blog_article(request,category, slug):
     blog_article = blog_model.BlogArticle.objects.get(article = article)
     context = ObtenerContexto(None)
     context.update({'blog_article': blog_article})
+    blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
+    context.update({'blog_list': blog_list})
     return render(request, 'blog_article.html', context)
 
 class sendMessage(TemplateView):
@@ -224,7 +228,7 @@ class sendMessage(TemplateView):
                 nombre = request.POST.get('txtNombre')
                 correo = request.POST.get('txtCorreo')
                 mensaje = MIMEText(request.POST.get('txtMensaje'))
-                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(activo = True).order_by('names')]
+                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(active = True).order_by('names')]
                 conn = smtplib.SMTP( "smtp.gmail.com:587")
                 conn.ehlo()
                 conn.starttls()

@@ -127,7 +127,7 @@ class create_blog(TemplateView):
                     return HttpResponse(data, content_type =  "application/json")
 
             try:
-                investigator_model = Investigator.objects.get(idCuenta=user)
+                investigator_model = Investigator.objects.get(userId=user)
             except Investigator.DoesNotExist:
                 message = {'status':'False','message': 'Lo sentimos, usted no tiene permiso para agregar un artículo...'}
                 data = json.dumps(message)
