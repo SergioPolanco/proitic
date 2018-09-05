@@ -9,7 +9,7 @@
 {% block content %}
 <section class="full-width-section">
 	<div class="full-image-container dark-bg border-bottom-clear">
-		<img class="to-right-block" src="https://htmlcoder.me/preview/the_project/v.2.1/template/images/section-image-4.jpg" alt="">
+		<img class="to-right-block" src="{{ MEDIA_URL }}{{ about.introductoryImage }}" alt="">
 		<div class="full-image-overlay text-right" style="margin-top: -122px;">
 			<h3>PROITIC</h3>
 			<ul class="list-icons">
@@ -23,9 +23,9 @@
 	<div class="full-text-container dark-bg border-bottom-clear">
 		<h2 class="mt-4">Universidad Nacional De Ingeniería</h2>
 		<div class="separator-2 hidden-lg-down"></div>
-		<p>Elaborar Proyectos de I+D+i y gestionar su financiamiento. <br> Planificar, Organizar y Gestionar actividades de formación en temas de I+D+i en su facultad Divulgar lo concerniente al desarrollo de la investigación en su....</p>
+		<p>{{ about.introductoryText }}</p>
 		<div class="separator-3 hidden-lg-down"></div>
-		<a href="mailto:youremail@domain.com" class="btn btn-gray-transparent btn-animated">Contactenos <i class="fa fa-envelope-o"></i></a>
+		<a href="/contactenos" class="btn btn-gray-transparent btn-animated">Contactenos <i class="fa fa-envelope-o"></i></a>
 	</div>
 </section>
 

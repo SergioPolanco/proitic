@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from about.models import About as AboutModel
-
+from accounts.models import UserProfile
 from investigator import models as investigator_model
 from testimony import models as testimony_model
 from cooperation import models as cooperation_model
@@ -26,10 +26,11 @@ class Historia(View):
 
 class Investigador(View):
     def get(self, request, investigator):
-        print(investigator)
         context = ObtenerContexto(None)
         idInvestigator = investigator
         investigator_info = investigator_model.Investigator.objects.get(slug=idInvestigator)
+        if investigator_info.photo:
+            investigator_photo = UserProfile.objects.get(user=investigator_info.userId).photo
         blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
         blog_list_paginator = blog_model.Article.objects.filter(owner = investigator_info, active = True).order_by('-id')[:20]
         grade_list = graduationWork_model.Grade.objects.filter(tutor = investigator_info)
@@ -44,13 +45,13 @@ class Investigador(View):
         except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
             blogs_paginator = paginator.page(paginator.num_pages)
-
         context.update({
             'investigator_info': investigator_info,
             'blog_list': blog_list,
             'blogs_paginator': blogs_paginator,
             'grade_list': grade_list,
-            'posgrade_list': posgrade_list
+            'posgrade_list': posgrade_list,
+            'investigator_photo': investigator_photo
         })
         return render(request, 'profile.html', context)
 
@@ -124,7 +125,7 @@ def profile_view(request, *args, **kwargs):
     except EmptyPage:
     # If page is out of range (e.g. 9999), deliver last page of results.
         blogs_paginator = paginator.page(paginator.num_pages)
-
+    
     context.update({
         'investigator_info': investigator_info,
         'blog_list': blog_list,

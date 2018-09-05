@@ -22,7 +22,9 @@ class About(View):
                     vission = request.POST.get('vission'),
                     address = request.POST.get('address'),
                     email = request.POST.get('email'),
-                    phone = request.POST.get('phone')
+                    phone = request.POST.get('phone'),
+                    introductoryText = request.POST.get('textoIntroductorio'),
+                    introductoryImage = request.FILES.get('introductoryImage', False)
                 )
             else:
                 about.mission = request.POST.get('mission')
@@ -30,6 +32,8 @@ class About(View):
                 about.address = request.POST.get('address')
                 about.email = request.POST.get('email')
                 about.phone = request.POST.get('phone')
+                about.introductoryText = request.POST.get('textoIntroductorio')
+                about.introductoryImage = request.FILES.get('introductoryImage', False)
             about.save()
             response = json.dumps({'status': 'True', 'message': 'Datos modificados satisfactoriamente.'})
         except Exception as inst:

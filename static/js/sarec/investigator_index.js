@@ -1,4 +1,4 @@
-$(document).ready(load)
+//$(document).ready(load)
 
 /*function load(){
 
@@ -21,4 +21,3 @@ $(document).ready(load)
 }).on("page", function(event, num){
     $("#content").html("<h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3><h3 class='title'><strong>Lista de Publicaciones</strong></h3>" + num + cars); // or some ajax content loading...
 });*/
-}

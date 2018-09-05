@@ -9,6 +9,8 @@ class About(models.Model):
     email = models.TextField(null=True, blank=True)
     phone = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
+    introductoryText = models.TextField(null=True, blank=True)
+    introductoryImage = models.FileField(upload_to='about/', blank=True, null=True)
 
     class Meta():
         db_table = 'about'
