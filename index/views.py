@@ -56,7 +56,8 @@ class Investigador(View):
         return render(request, 'profile.html', context)
 
 def ObtenerContexto(params):
-    postgraduate_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=2))
+    postgraduate_list = graduationWork_model.PosGrade.objects.all()[:5]
+    pregraduate_list = graduationWork_model.Grade.objects.all()[:5]
     publication_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=3))[:7]
     investigator_list = investigator_model.Investigator.objects.filter(active = True).order_by('names')
     about = AboutModel.objects.last()
@@ -64,9 +65,10 @@ def ObtenerContexto(params):
 
     context = {
         'about' : about,
-        'postgraduate_list' : postgraduate_list,
-        'publication_list' : publication_list,
-        'investigator_list' : investigator_list,
+        'postgraduate_list': postgraduate_list,
+        'pregraduate_list': pregraduate_list,
+        'publication_list': publication_list,
+        'investigator_list': investigator_list,
         'params': params,
         'investigationLines_list': investigationLines_list
     }
