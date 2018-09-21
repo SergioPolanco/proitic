@@ -125,9 +125,9 @@
                                           <div class="divider"></div>
                                           <ul class="menu">
                                             {% for publication in publication_list %}
-                                              <li><a href="/publicaciones/categorias/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.name|truncatechars:42 }}</a></li>
+                                              <li><a href="/publicaciones/categorias/{{publication.categorys.name}}/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.title|truncatechars:42 }}</a></li>
                                             {% endfor %}
-                                            <li class="active"><a href="/publicaciones/categorias"><i class="fa fa-angle-right"></i>Otras categorías...</a></li>
+                                            
                                           </ul>
                                         </div>
                                       </div>
@@ -171,7 +171,7 @@
                                             <ul class="menu">
                                               {% for postgraduate in postgraduate_list %}
                                                 <li >
-                                                  <a href="/publicaciones/categorias/{{ postgraduate.slug }}">
+                                                  <a href="/posgrade/{{ postgraduate.slug }}">
                                                     <i class="fa fa-angle-right"></i>
                                                     {{ postgraduate.titulo }}
                                                   </a>
@@ -211,7 +211,7 @@
                                               <ul class="menu">
                                                 {% for pregraduate in pregraduate_list %}
                                                   <li >
-                                                    <a href="/publicaciones/categorias/{{ pregraduate.slug }}">
+                                                    <a href="/grade/{{ pregraduate.slug }}">
                                                       <i class="fa fa-angle-right"></i>
                                                       {{ pregraduate.titulo }}
                                                     </a>
@@ -279,10 +279,11 @@
           </div>
         </header>
       </div>
-    </div>
-    {% block content %}
+      {% block content %}
 
-    {% endblock content %}
+      {% endblock content %}
+    </div>
+    
     <footer id="footer" class="clearfix dark">
       <div class="footer blue header-top">
         <div class="container">

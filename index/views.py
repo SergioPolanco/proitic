@@ -58,7 +58,7 @@ class Investigador(View):
 def ObtenerContexto(params):
     postgraduate_list = graduationWork_model.PosGrade.objects.all()[:5]
     pregraduate_list = graduationWork_model.Grade.objects.all()[:5]
-    publication_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=3))[:7]
+    publication_list = blog_model.Article.objects.filter(active = True)[:7]
     investigator_list = investigator_model.Investigator.objects.filter(active = True).order_by('names')
     about = AboutModel.objects.last()
     investigationLines_list = investigationLines_model.InvestigationLines.objects.all().order_by('titulo')
