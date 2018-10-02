@@ -373,7 +373,9 @@ function load() {
       mostrarImagen(this);
   });
 
-  $(document).on( 'submit' , "form[name='form-modificar-investigador']" ,function () {
+  $(document).on( 'submit' , "form[name='form-modificar-investigador']" ,function (e) {
+      e.preventDefault()
+      
       $( '.load' ).removeClass( 'hide' );
       var formData = new FormData( $( "form[name='form-modificar-investigador']" )[0] );
 
@@ -383,10 +385,11 @@ function load() {
         formData.append("cmbCuentaUsuario", $(".chosen-select").val());
         console.log(formData)
         $.ajax({
-            url : '/administrator/investigator/new/',
+            url : '/administrator/investigator/investigatormodify/',
             type : 'put',
             data : formData,
             async : true,
+            contentType: "application/json",
             success: function(data) {
                 if( data.status === 'False' ) {
                     NotificationError( 'Advertencia!', 'Error!!! '+ data.message +'' );
@@ -430,7 +433,7 @@ function load() {
       }
 
       $( '.load' ).addClass( 'hide' );
-      return false;
+      
   });
 
 }

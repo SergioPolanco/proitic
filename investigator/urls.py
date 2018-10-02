@@ -7,4 +7,5 @@ from investigator.views import Investigator, showInvestigator
 urlpatterns = [
     url(r'^new/$', login_required(Investigator.as_view()), name='newInvestigator'),
     url(r'^modify/$', views.showInvestigator, name='modifyInvestigator'),
+    url(r'^investigatormodify/$', login_required(Investigator.as_view()), name='editInvestigator'),
 ]

@@ -29,8 +29,9 @@ class Investigador(View):
         context = ObtenerContexto(None)
         idInvestigator = investigator
         investigator_info = investigator_model.Investigator.objects.get(slug=idInvestigator)
+        print(investigator_info.userId.id)
         if investigator_info.photo:
-            investigator_photo = UserProfile.objects.get(user=investigator_info.userId).photo
+            investigator_photo = UserProfile.objects.get(user=investigator_info.userId.id).photo
         blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
         blog_list_paginator = blog_model.Article.objects.filter(owner = investigator_info, active = True).order_by('-id')[:20]
         grade_list = graduationWork_model.Grade.objects.filter(tutor = investigator_info)

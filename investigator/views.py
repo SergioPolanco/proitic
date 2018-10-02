@@ -37,11 +37,7 @@ class Investigator(View):
         return HttpResponse(response, content_type = 'application/json')
 
     def put(self, request):
-        put('----------------------------------------------------------')
-        put('----------------------------------------------------------')
-        put('Hola Mundo')
-        put('----------------------------------------------------------')
-        put('----------------------------------------------------------')
+        print("entro a modify")
         try:
             key = int(request.PUT.get('txtId'))
             nombres = request.PUT.get('txtNombres')
