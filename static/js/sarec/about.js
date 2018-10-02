@@ -3,12 +3,20 @@ class About {
     this.formAbout = document.getElementsByName('formAbout')[0]
     this.url = document.body.querySelectorAll('*[href="/administrator/others/about/"]')[0]
     this.formAbout.addEventListener('submit', (e) => { this.processForm(e) })
+    $( '.chosen-select' ).chosen({
+        allow_single_deselect:true
+    });
+    $("#file_grade").on("change", function(e){
+      var filename = e.target.files[0].name;
+      $("#result_file_grade").html(filename);
+    });
   }
   initApp() {
     this.url.parentElement.parentElement.parentElement.classList.add('active', 'open', 'hsub')
     this.url.parentElement.classList.add('active')
     this.url.parentElement.parentElement.classList.add('open')
     $('.input-mask-phone').mask('(999) 9999-9999')
+    
   }
   processForm(e) {
     if (e.preventDefault) {

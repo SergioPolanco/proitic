@@ -24,7 +24,7 @@
           <div class="call-to-action text-center">
             <div class="row">
               <div class="col-sm-12">
-                <h3 class="mt-10 text-muted text-white">Observa los distintos <strong>Posgrados</strong>.</h3>
+                <h3 class="text-muted text-white">Observa los distintos <strong>Posgrados</strong>.</h3>
               </div>
             </div>
           </div>
@@ -45,10 +45,6 @@
                     <header>
                       <h2 class="text-center"><a href="{% url 'posgrade.detail' posgrade.slug %}">{{ posgrade.titulo }}</a></h2>
                       <div class="post-info">
-                        <span class="post-date">
-                          <i class="icon-calendar"></i>
-                          <span class="month">{{ posgrade.created_at|date }}</span>
-                        </span>
                         <span class="submitted"><i class="icon-user-1"></i> Por <a href="/investigador/{{blog.owner.slug}}">{{ posgrade.estudiante }}</a></span>
                       </div>
                     </header>

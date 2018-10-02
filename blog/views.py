@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
@@ -127,7 +127,7 @@ class create_blog(TemplateView):
                     return HttpResponse(data, content_type =  "application/json")
 
             try:
-                investigator_model = Investigator.objects.get(idCuenta=user)
+                investigator_model = Investigator.objects.get(userId=user)
             except Investigator.DoesNotExist:
                 message = {'status':'False','message': 'Lo sentimos, usted no tiene permiso para agregar un artículo...'}
                 data = json.dumps(message)

@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'graduationWork',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'proitic.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sarec',
+        'NAME': 'proitic',
         'USER': 'admin',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

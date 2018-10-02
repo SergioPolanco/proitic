@@ -91,7 +91,6 @@ class modifyLine(TemplateView):
                 idFormLine = request.POST.get('idFormLine')
                 tittle = request.POST.get('txtTitulo')
                 description = request.POST.get('txtDescripcion')
-                print idFormLine + ' esto imprime'
             except Exception as e:
                 message = {'status':'1','message': str(traceback.format_exc())}
                 data = json.dumps(message)

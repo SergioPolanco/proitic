@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^', include('index.urls')),
     url(r'^administrator/others/', include('about.urls')),
     url(r'^administrator/investigator/', include('investigator.urls')),
-    #url(r'^perfiles', include('investigator.urls')),
+    url(r'^perfiles', include('investigator.urls'), name='perfiles'),
     url(r'^news', include('news.urls')),
     url(r'^administrator/', include('administrator.urls')),
     url(r'^administrator/accounts/', include('accounts.urls')),

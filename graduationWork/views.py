@@ -302,7 +302,6 @@ class modify_Grade(TemplateView):
         if request.is_ajax() and request.method == 'POST':
             try:
                 idGradeForm = request.POST.get('idGradeForm')
-                print idGradeForm +'dsfsaf'
                 estudiante = request.POST.get('txtEstudiantes')
                 tutor = request.POST.get('txtTutor')
                 titulo = request.POST.get('txtTitulo')

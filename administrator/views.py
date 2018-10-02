@@ -3,16 +3,17 @@ from __future__ import unicode_literals
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 
 @login_required
 def index_view(request):
+    print('dsav')
     return render(request, 'administrator/index.html')
 
 def login_view(request):
     # Si el usuario esta ya logueado, lo redireccionamos a index_view
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return redirect(reverse('administrator.index'))
 
     mensaje = ''

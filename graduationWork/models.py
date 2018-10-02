@@ -9,7 +9,7 @@ class Grade(models.Model):
         db_table = "tesisgrade"
 
     estudiante = models.CharField(max_length = 100, null = False)
-    tutor = models.ForeignKey(investigator_model.Investigator)
+    tutor = models.ForeignKey(investigator_model.Investigator, on_delete=models.CASCADE)
     titulo = models.CharField(max_length = 100, null = False)
     fechaDefensa = models.DateField(null = False)
     descripcion = models.TextField(null = False)
@@ -25,7 +25,7 @@ class PosGrade(models.Model):
         db_table = "tesisposgrade"
 
     estudiante = models.CharField(max_length = 100, null = False)
-    tutor = models.ForeignKey(investigator_model.Investigator)
+    tutor = models.ForeignKey(investigator_model.Investigator, on_delete=models.CASCADE)
     titulo = models.CharField(max_length = 100, null = False)
     fechaDefensa = models.DateField(null = False)
     descripcion = models.TextField(null = False)

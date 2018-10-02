@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from about.models import About as AboutModel
-
+from accounts.models import UserProfile
 from investigator import models as investigator_model
 from testimony import models as testimony_model
 from cooperation import models as cooperation_model
@@ -11,7 +11,7 @@ from blog import models as blog_model
 import smtplib
 from django.views.generic import TemplateView
 import email.mime.multipart
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 import json, traceback
 from django.http import HttpResponse
 from django.db.models import Max, Min
@@ -25,10 +25,13 @@ class Historia(View):
         return render(request, 'historia.html', context)
 
 class Investigador(View):
-    def get(self, request):
+    def get(self, request, investigator):
         context = ObtenerContexto(None)
-        idInvestigator = kwargs['investigator']
+        idInvestigator = investigator
         investigator_info = investigator_model.Investigator.objects.get(slug=idInvestigator)
+        print(investigator_info.userId.id)
+        if investigator_info.photo:
+            investigator_photo = UserProfile.objects.get(user=investigator_info.userId.id).photo
         blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
         blog_list_paginator = blog_model.Article.objects.filter(owner = investigator_info, active = True).order_by('-id')[:20]
         grade_list = graduationWork_model.Grade.objects.filter(tutor = investigator_info)
@@ -43,28 +46,30 @@ class Investigador(View):
         except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
             blogs_paginator = paginator.page(paginator.num_pages)
-
         context.update({
             'investigator_info': investigator_info,
             'blog_list': blog_list,
             'blogs_paginator': blogs_paginator,
             'grade_list': grade_list,
-            'posgrade_list': posgrade_list
+            'posgrade_list': posgrade_list,
+            'investigator_photo': investigator_photo
         })
         return render(request, 'profile.html', context)
 
 def ObtenerContexto(params):
-    postgraduate_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=2))
-    publication_list = blog_model.Subcategory.objects.filter(active = True, category_id__in=blog_model.Category.objects.filter(id=3))[:7]
-    investigator_list = investigator_model.Investigator.objects.filter(activo = True).order_by('nombres')
+    postgraduate_list = graduationWork_model.PosGrade.objects.all()[:5]
+    pregraduate_list = graduationWork_model.Grade.objects.all()[:5]
+    publication_list = blog_model.Article.objects.filter(active = True)[:7]
+    investigator_list = investigator_model.Investigator.objects.filter(active = True).order_by('names')
     about = AboutModel.objects.last()
     investigationLines_list = investigationLines_model.InvestigationLines.objects.all().order_by('titulo')
 
     context = {
         'about' : about,
-        'postgraduate_list' : postgraduate_list,
-        'publication_list' : publication_list,
-        'investigator_list' : investigator_list,
+        'postgraduate_list': postgraduate_list,
+        'pregraduate_list': pregraduate_list,
+        'publication_list': publication_list,
+        'investigator_list': investigator_list,
         'params': params,
         'investigationLines_list': investigationLines_list
     }
@@ -81,6 +86,7 @@ def index_view(request):
         'cooperation_list': cooperation_list
     }
     context = ObtenerContexto(context)
+    
     return render(request, 'index1.html', context)
 
 def contact_view(request):
@@ -122,7 +128,7 @@ def profile_view(request, *args, **kwargs):
     except EmptyPage:
     # If page is out of range (e.g. 9999), deliver last page of results.
         blogs_paginator = paginator.page(paginator.num_pages)
-
+    
     context.update({
         'investigator_info': investigator_info,
         'blog_list': blog_list,
@@ -215,6 +221,8 @@ def blog_article(request,category, slug):
     blog_article = blog_model.BlogArticle.objects.get(article = article)
     context = ObtenerContexto(None)
     context.update({'blog_article': blog_article})
+    blog_list = blog_model.Article.objects.all().order_by('-id')[:20]
+    context.update({'blog_list': blog_list})
     return render(request, 'blog_article.html', context)
 
 class sendMessage(TemplateView):
@@ -224,7 +232,7 @@ class sendMessage(TemplateView):
                 nombre = request.POST.get('txtNombre')
                 correo = request.POST.get('txtCorreo')
                 mensaje = MIMEText(request.POST.get('txtMensaje'))
-                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(activo = True).order_by('nombres')]
+                destinatarios = [investigator.correo for investigator in investigator_model.Investigator.objects.filter(active = True).order_by('names')]
                 conn = smtplib.SMTP( "smtp.gmail.com:587")
                 conn.ehlo()
                 conn.starttls()

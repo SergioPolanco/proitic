@@ -19,7 +19,7 @@ class Investigator(models.Model):
     photo = models.FileField(upload_to='investigator/', blank=True, null=True)
     active = models.BooleanField(default = 1)
     presentation = models.TextField(null = False)
-    userId = models.ForeignKey(User)
+    userId = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta():
         db_table = "investigator"

@@ -1,0 +1,26 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-wrapper{
+  flex: 1
+}
+.pr-1, .px-1 {
+    padding-right: 0.25rem !important;
+}
+
+.d-flex {
+  display: flex
+}
+
+.justify-content-center {
+  justify-content: center
+}
+
+h1.extra-large {
+  font-size: 130px;
+  font-weight: 700;
+  color: #002E6C;
+}

@@ -7,7 +7,10 @@ from django.db.models.signals import pre_delete
 from django.dispatch.dispatcher import receiver
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     photo = models.FileField(upload_to='profiles/', blank=True, null=True)
 
     def __str__(self):

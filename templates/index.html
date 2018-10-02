@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{% static 'css/sarec/custom.css' %}">
     <link rel="stylesheet" href="{% static 'css/sarec/master.css' %}">
     <link rel="stylesheet" href="{% static 'css/sarec/master2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sarec/custom-sarec.css' %}">
     {% block header %}
     {% endblock header %}
   </head>
@@ -124,9 +125,9 @@
                                           <div class="divider"></div>
                                           <ul class="menu">
                                             {% for publication in publication_list %}
-                                              <li><a href="/publicaciones/categorias/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.name|truncatechars:42 }}</a></li>
+                                              <li><a href="/publicaciones/categorias/{{publication.categorys.name}}/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.title|truncatechars:42 }}</a></li>
                                             {% endfor %}
-                                            <li class="active"><a href="/publicaciones/categorias"><i class="fa fa-angle-right"></i>Otras categorías...</a></li>
+                                            
                                           </ul>
                                         </div>
                                       </div>
@@ -144,7 +145,7 @@
                               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personal</a>
                               <ul class="dropdown-menu">
                                 {% for investigator in investigator_list %}
-                                <li ><a href="{% url 'perfiles.index' investigator.slug %}" id="{{ investigator.id }}">{{ investigator.nombres }} {{ investigator.apellidos }}</a></li>
+                                <li ><a href="/investigador/{{investigator.slug }}" id="{{ investigator.id }}">{{ investigator.names }} {{ investigator.surnames }}</a></li>
                                 {% endfor %}
                               </ul>
                             </li>
@@ -156,14 +157,89 @@
                                 {% endfor %}
                               </ul>
                             </li>
-                            <li class="dropdown ">
+                            {% if postgraduate_list %}
+                            <li class="dropdown mega-menu">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Posgrado</a>
                                 <ul class="dropdown-menu">
-                                  {% for postgraduate in postgraduate_list %}
-                                    <li ><a href="/publicaciones/categorias/{{ postgraduate.slug }}">{{ postgraduate.name }}</a></li>
+                                  <li>
+                                    <div class="row">
+                                      <div class="col-lg-8 col-md-9">
+                                        <h4 class="title">Trabajos de Posgrado</h4>
+                                        <div class="row">
+                                          <div class="col-xs-12">
+                                            <div class="divider"></div>
+                                            <ul class="menu">
+                                              {% for postgraduate in postgraduate_list %}
+                                                <li >
+                                                  <a href="/posgrade/{{ postgraduate.slug }}">
+                                                    <i class="fa fa-angle-right"></i>
+                                                    {{ postgraduate.titulo }}
+                                                  </a>
+                                                </li>
+                                              {% endfor %}
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-4 col-md-3 hidden-sm">
+                                        <h4 class="title">¿Encontrastes lo que buscas?</h4>
+                                        <p class="mb-10 text-justify">
+                                          Accede a la sección prinicipal de trabajos de posgrado, ahí encontrarás el resto del contenido.&nbsp;&nbsp;
+                                          <i class="fa fa-angle-double-right"></i>
+                                          <a href="{% url 'posgrades.index' %}">
+                                            &nbsp;&nbsp;Ir
+                                          </a>
+                                        </p>
+                                        <img src="{% static 'img/section-image-3.png' %}" alt="The Project">
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                            {% if pregraduate_list %}
+                            <li class="dropdown mega-menu">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Pregrado</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                      <div class="row">
+                                        <div class="col-lg-8 col-md-9">
+                                          <h4 class="title">Trabajos de Posgrado</h4>
+                                          <div class="row">
+                                            <div class="col-xs-12">
+                                              <div class="divider"></div>
+                                              <ul class="menu">
+                                                {% for pregraduate in pregraduate_list %}
+                                                  <li >
+                                                    <a href="/grade/{{ pregraduate.slug }}">
+                                                      <i class="fa fa-angle-right"></i>
+                                                      {{ pregraduate.titulo }}
+                                                    </a>
+                                                  </li>
+                                                {% endfor %}
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-3 hidden-sm">
+                                          <h4 class="title">¿Encontrastes lo que buscas?</h4>
+                                          <p class="mb-10 text-justify">
+                                            Accede a la sección prinicipal de trabajos de pregrado, ahí encontrarás el resto del contenido.&nbsp;&nbsp;
+                                            <i class="fa fa-angle-double-right"></i>
+                                            <a href="/publicaciones/categorias">
+                                              &nbsp;&nbsp;Ir
+                                            </a>
+                                          </p>
+                                          <img src="{% static 'img/section-image-3.png' %}" alt="The Project">
+                                        </div>
+                                      </div>
+                                    </li>
+                                  {% for pregraduate in pregraduate_list %}
+                                    <li ><a href="/publicaciones/categorias/{{ pregraduate.slug }}">{{ pregraduate.titulo }}</a></li>
                                   {% endfor %}
                                 </ul>
                             </li>
+                            {% endif %}
                             <li class="dropdown ">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Otros</a>
                                 <ul class="dropdown-menu">
@@ -178,7 +254,7 @@
                             </li>
                           </ul>
                           <!--Seccion de Busqueda-->
-                          <div class="header-dropdown-buttons hidden-xs">
+                          <div class="header-dropdown-buttons hidden-xs hidden">
                             <div class="btn-group dropdown">
                               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-search"></i></button>
                               <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
@@ -203,10 +279,11 @@
           </div>
         </header>
       </div>
-    </div>
-    {% block content %}
+      {% block content %}
 
-    {% endblock content %}
+      {% endblock content %}
+    </div>
+    
     <footer id="footer" class="clearfix dark">
       <div class="footer blue header-top">
         <div class="container">

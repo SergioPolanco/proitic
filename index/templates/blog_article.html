@@ -30,7 +30,7 @@
                 <i class="icon-calendar"></i>
                 <span class="day">{{blog_article.article.created_at|date}}</span>
               </span>
-              <span class="submitted"><i class="icon-user-1"></i> por <a href="/investigador/{{blog_article.article.owner.slug}}">{{blog_article.article.owner.nombres}} {{blog_article.article.owner.apellidos}}</a></span>
+              <span class="submitted"><i class="icon-user-1"></i> por <a href="/investigador/{{blog_article.article.owner.slug}}">{{blog_article.article.owner.names}} {{blog_article.article.owner.surnames}}</a></span>
             </div>
           </header>
           <div class="separator-2"></div>
@@ -51,22 +51,6 @@
       </div>
       <aside class="col-md-4 col-lg-3 col-lg-offset-1">
         <div class="sidebar">
-
-          <div class="block clearfix">
-            <h3 class="title">Ultimos Tweets</h3>
-            <div class="separator-2"></div>
-            <ul class="tweets">
-              <li>
-                <i class="fa fa-twitter"></i>
-                <p><a href="#">@lorem</a> ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a href="#">http://t.co/dzLEYGeEH9</a>.</p><span>Hace 16 horas</span>
-              </li>
-              <li>
-                <i class="fa fa-twitter"></i>
-                <p><a href="#">@lorem</a> ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, aliquid, et molestias nesciunt <a href="#">http://t.co/dzLEYGeEH9</a>.</p><span>Hace 16 horas</span>
-              </li>
-            </ul>
-          </div>
-
           <div class="block clearfix">
             <h3 class="title">Ultimas Noticias</h3>
             <div class="separator-2"></div>
@@ -87,11 +71,11 @@
                 </div>
               {% endif %}
             {% endfor %}
-            <div class="text-right space-top">
+            <div class="text-left space-top">
               <a href="/articulos/" class="link-dark"><i class="fa fa-plus-circle pl-5 pr-5"></i>Todas</a>
             </div>
           </div>
-          <div class="block clearfix">
+          <div class="block clearfix hidden">
             <h3 class="title">Descargar Archivo</h3>
             <div class="separator-2"></div>
             <a href="#" class="btn btn-default btn-animated btn-lg">
@@ -99,7 +83,7 @@
               <i class="fa fa-download"></i>
             </a>
           </div>
-          <div class="block clearfix ">
+          <div class="block clearfix hidden">
             <form role="search">
               <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="Buscar">

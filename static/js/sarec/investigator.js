@@ -3,7 +3,7 @@ class Investigator {
     this.formInvestigator = document.getElementsByName('formInvestigator')[0]
     this.picture = document.getElementById('fotoPerfil')
     this.avatarImage = document.getElementById('avatarimage')
-    this.url = document.body.querySelectorAll('*[href="/administrator/investigator/new/"]')[0]
+    this.url = document.body.querySelectorAll('*[href="/perfilesnew/"]')[0]
     this.buttonReset = document.getElementById('btnReiniciar')
     this.formInvestigator.addEventListener('submit', (e) => { this.processForm(e) })
     this.buttonReset.addEventListener('click', (e) => { this.resetForm() })
