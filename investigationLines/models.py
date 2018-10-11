@@ -8,7 +8,7 @@ from django.utils.text import slugify
 class InvestigationLines(models.Model):
 
     class Meta():
-        db_table = "investigationLines"
+        db_table = "investigationlines"
 
     titulo = models.CharField(max_length = 255, null = False)
     descripcion = models.TextField(null = False)

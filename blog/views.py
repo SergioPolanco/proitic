@@ -40,7 +40,7 @@ class ArticleListView(generic.ListView):
             # self.request.session.modified = True
             
         if self.request.user.is_superuser:
-            return Article.objects.all()
+            return Article.objects.all().order_by('-created_at')
         else:
             try:
                 investigator_model = Investigator.objects.get(idCuenta=self.request.user.id)

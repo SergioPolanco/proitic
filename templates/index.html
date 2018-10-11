@@ -125,7 +125,7 @@
                                           <div class="divider"></div>
                                           <ul class="menu">
                                             {% for publication in publication_list %}
-                                              <li><a href="/publicaciones/categorias/{{publication.categorys.name}}/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.title|truncatechars:42 }}</a></li>
+                                              <li><a href="/publicaciones/categorias/{{publication.categorys.slug}}/{{publication.slug}}"><i class="fa fa-angle-right"></i>{{ publication.title|truncatechars:42 }}</a></li>
                                             {% endfor %}
                                             
                                           </ul>
