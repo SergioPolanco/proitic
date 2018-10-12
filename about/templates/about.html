@@ -17,62 +17,61 @@
 {% block content %}
 <div class="row">
   <div class="col-xs-12">
-    <form class="form-horizontal" name="formAbout" method="post">
+    <form class="form-horizontal">
       {% csrf_token %}
-
-      <div class="form-group" id="fgTextoIntroductorio">
+      <div class="form-group">
         <label for="txtTextoIntroductorio" class="col-xs-3 control-label no-padding-right">Texto Introductorio:</label>
         <div class="col-xs-9">
-          <textarea id="textoIntroductorio" name="textoIntroductorio" class="col-xs-7" rows="5">{{ about.introductoryText | default:'' }}</textarea>
+          <textarea id="introductoryText" class="col-xs-7" rows="5">{{ about.introductoryText | default:'' }}</textarea>
         </div>
       </div>
 
-      <div class="form-group" id="fgDescripcion">
+      <div class="form-group">
         <label for="txtDescripcion" class="col-xs-3 control-label  no-padding-right">Imagen Introductoria:</label>
         <div class="col-xs-5">
-          <input type="file" name="introductoryImage" id="file_grade" class="form-control inputfile inputfile-6" value="">
-          <label for="file_grade"><span id="result_file_grade"></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Subir Archivo&hellip;</strong></label>
+          <input type="file" id="introductoryImage" class="form-control inputfile inputfile-6" value="">
+          <label for="introductoryImage"><span id="result_introductoryImage"></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> Subir Archivo&hellip;</strong></label>
         </div>
       </div>
 
-      <div class="form-group" id="fgMision">
+      <div class="form-group">
         <label for="txtMision" class="col-xs-3 control-label no-padding-right">Misión:</label>
         <div class="col-xs-9">
-          <textarea id="mission" name="mission" class="col-xs-7" rows="5">{{ about.mission | default:'' }}</textarea>
+          <textarea id="mission" class="col-xs-7" rows="5">{{ about.mission | default:'' }}</textarea>
         </div>
       </div>
 
-      <div class="form-group" id="fgVision">
+      <div class="form-group">
         <label for="txtMision" class="col-xs-3 control-label no-padding-right">Visión:</label>
         <div class="col-xs-9">
-          <textarea id="vission" name="vission" class="col-xs-7" rows="5">{{ about.vission | default:'' }}</textarea>
+          <textarea id="vission" class="col-xs-7" rows="5">{{ about.vission | default:'' }}</textarea>
         </div>
       </div>
 
-      <div class="form-group" id="fgCorreo">
+      <div class="form-group">
         <label for="txtCorreo" class="col-xs-3 control-label  no-padding-right">Correo:</label>
         <div class="col-xs-9">
           <span class="input-icon input-icon-right">
-            <input type="email" id="email" name="email" class="input-large requerid" placeholder="usuario@gmail.com" value="{{ about.email | default:'' }}">
+            <input type="email" id="email" class="input-large" placeholder="usuario@gmail.com" value="{{ about.email | default:'' }}">
             <i class="ace-icon fa fa-envelope"></i>
           </span>
         </div>
       </div>
 
-      <div class="form-group" id="fgTelefono">
+      <div class="form-group">
         <label for="txtTelefono" class="col-xs-3 control-label  no-padding-right">Teléfono:</label>
         <div class="col-xs-9">
           <span class="input-icon input-icon-right">
-            <input type="text" id="phone" name="phone" class="input-medium input-mask-phone requerid" placeholder="(505) 9999-9999" value="{{ about.phone | default:'' }}">
+            <input type="text" id="phone" class="input-medium" placeholder="(505) 9999-9999" value="{{ about.phone | default:'' }}">
             <i class="ace-icon fa fa-phone fa-flip-horizontal"></i>
           </span>
         </div>
       </div>
 
-      <div class="form-group" id="fgDireccion">
+      <div class="form-group">
         <label for="txtAddress" class="col-xs-3 control-label no-padding-right">Dirección:</label>
         <div class="col-xs-9">
-          <textarea id="address" name="address" class="col-xs-7" rows="5">{{ about.address | default:'' }}</textarea>
+          <textarea id="address" class="col-xs-7" rows="5">{{ about.address | default:'' }}</textarea>
         </div>
       </div>
 
@@ -98,9 +97,9 @@
 {% endblock content %}
 
 {% block script %}
-<script type="text/javascript" src="{% static 'js/sarec/maskedinput.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/sarec/jquery.gritter.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/sarec/ajax403.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/sarec/chosen.jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/sarec/about.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sarec/helpers.js' %}"></script>
+<script type="text/javascript" src="{% static 'about/about.js' %}"></script>
 {% endblock script %}

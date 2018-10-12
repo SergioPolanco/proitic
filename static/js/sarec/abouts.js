@@ -1,3 +1,11 @@
+$(document).ready(function() {
+	$("#formAbout").onSubmit(function(e){
+		e.preventDefault();
+		let data = {
+			
+		}
+	})
+})
 class About {
   constructor() {
     this.formAbout = document.getElementsByName('formAbout')[0]
