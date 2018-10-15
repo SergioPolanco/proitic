@@ -4,8 +4,9 @@ $(document).ready(function() {
 
         let inputIntroductoryImage = document.getElementById("introductoryImage")
         let imgB64 = ""
-
-        convertImgToBase64(inputIntroductoryImage, function(value) {
+        
+        convertImgToBase64Async(inputIntroductoryImage)
+        .then((result) => {
             let data = {
                 mission: $("#mission").val(),
                 vission: $("#vission").val(),
@@ -14,12 +15,13 @@ $(document).ready(function() {
                 phone: $("#phone").val(),
                 address: $("#address").val(),
                 introductoryText: $("#introductoryText").val(),
-                introductoryImage: value,
+                introductoryImage: result,
             }
-            
             saveData(data)
         })
-		
+        .catch((error) => {
+        })
+        
     })
 })
 
@@ -30,14 +32,15 @@ function saveData(data) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: (response) => {
-            console.log(response)
+            alertify.notify("Datos actualizados correctamente" , 'success', 10);
         },
         error: (error) => {
             let errorParsed = JSON.parse(error.responseText)
             console.log(errorParsed)
 
             for (let key in errorParsed) {
-                NotificationError( 'Advertencia!', 'Error!!! ' + errorParsed[key][0] + '' )
+                alertify.notify(errorParsed[key][0] , 'error', 10);
+                // NotificationError( 'Advertencia!', 'Error!!! ' + errorParsed[key][0] + '' )
             }
             
         }

@@ -12,7 +12,7 @@ class AboutSchema (serializers.Serializer):
     phone = serializers.CharField()
     address = serializers.CharField()
     introductoryText = serializers.CharField()
-    introductoryImage = serializers.CharField()
+    introductoryImage = serializers.CharField(allow_blank=True)
 
     def validate_phone(self, value):
         if len(value) != 8:
@@ -20,7 +20,16 @@ class AboutSchema (serializers.Serializer):
         return value
     
     def create(self, validated_data):
-        return AboutModel(**validated_data)
+        instance = AboutModel(**validated_data)
+
+        imgData = validated_data.get('introductoryImage')
+        
+        dataImage = convertImageToContentFile(imgData)
+
+        instance.introductoryImage = dataImage
+
+        instance.save()
+        return instance
 
     def update(self, instance, validated_data):
         instance.mission = validated_data.get('mission', instance.mission)
@@ -31,10 +40,21 @@ class AboutSchema (serializers.Serializer):
         instance.introductoryText = validated_data.get('introductoryText', instance.introductoryText)
 
         imgData = validated_data.get('introductoryImage')
+
+        dataImage = convertImageToContentFile(imgData)
+        instance.introductoryImage = dataImage
+        instance.save()
+        return instance
+    
+
+def convertImageToContentFile(imgData):
+
+    if imgData:
         format, imgstr = imgData.split(';base64,') 
         ext = format.split('/')[-1]
 
-        data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
-        instance.introductoryImage = data
-        instance.save()
-        return instance
+        dataImage = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+
+        return dataImage
+    
+    return False

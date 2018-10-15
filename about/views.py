@@ -25,20 +25,10 @@ class About(View):
         payload = BytesIO(request.body)
         try:
             json_data = JSONParser().parse(payload)
-            print(json_data)
         except ParseError as err:
             return HttpResponse(err, status=400)
 
         if not about:
-            # about = AboutModel (
-            #     mission = request.POST.get('mission'),
-            #     vission = request.POST.get('vission'),
-            #     address = request.POST.get('address'),
-            #     email = request.POST.get('email'),
-            #     phone = request.POST.get('phone'),
-            #     introductoryText = request.POST.get('textoIntroductorio'),
-            #     introductoryImage = request.FILES.get('introductoryImage', False)
-            # )
             parsed_data = AboutSchema(data=json_data)
 
             if not parsed_data.is_valid():
@@ -54,14 +44,6 @@ class About(View):
             
             parsed_data.save()
             return HttpResponse(status=200)
-        #     about.mission = parsed_data["mission"]["value"]
-        #     about.vission = parsed_data["vission"]
-        #     about.address = parsed_data["address"]
-        #     about.email = parsed_data["email"]
-        #     about.phone = parsed_data["phone"]
-        #     about.introductoryText = parsed_data["introductoryText"]
-        #     about.introductoryImage = request.FILES.get('introductoryImage', False)
-        # about.save()
 
 
 class History(View):

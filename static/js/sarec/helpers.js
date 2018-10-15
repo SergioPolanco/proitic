@@ -1,7 +1,6 @@
 //Notifications 
 
 function NotificationSuccess(title, message) {
-    $.gritter.removeAll()
     var unique_id = $.gritter.add({
         title: title,
         text: message,
@@ -12,7 +11,6 @@ function NotificationSuccess(title, message) {
 }
 
 function NotificationWarning(title, message) {
-    $.gritter.removeAll()
     var unique_id = $.gritter.add({
         title: title,
         text: message,
@@ -23,7 +21,6 @@ function NotificationWarning(title, message) {
 }
 
 function NotificationError(title, message) {
-    //$.gritter.removeAll()
     var unique_id = $.gritter.add({
         title: title,
         text: message,
@@ -36,12 +33,21 @@ function NotificationError(title, message) {
 
 // Image
 
-function convertImgToBase64(element, callback) {
-    if (element.files && element.files[0]) {
-        let reader = new FileReader()
-        reader.onload = function (e) {
-            callback(e.target.result)
+function convertImgToBase64(element) {
+    return new Promise((resolve, reject) => {
+        if (element.files && element.files[0]) {
+            let reader = new FileReader()
+            reader.onload = function (e) {
+                resolve(e.target.result)
+            }
+            reader.readAsDataURL(element.files[0])
+        } else {
+            resolve("")
         }
-        reader.readAsDataURL(element.files[0])
-    }
+    })
+}
+
+async function convertImgToBase64Async(element) {
+    let result = await convertImgToBase64(element)
+    return result
 }
